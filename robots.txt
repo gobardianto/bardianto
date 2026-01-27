@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://bardianto.my.id/sitemap.xml
+
+# Crawl-delay: 1
+
+# Googlebot specific
+User-agent: Googlebot
+Allow: /
+
+# Bingbot specific
+User-agent: Bingbot
+Allow: /
+
+# Baidu specific
+User-agent: Baiduspider
+Allow: /
