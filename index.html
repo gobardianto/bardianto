@@ -51,6 +51,28 @@
             background-size: 1000px 100%;
             animation: shimmer 2s infinite;
         }
+        .process-step {
+            counter-increment: step;
+            position: relative;
+            padding-left: 3.5rem;
+        }
+        .process-step:before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.875rem;
+            color: #10b981;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -118,11 +140,11 @@
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
                     <div>
                         <h2 class="text-2xl font-black uppercase mb-2 tracking-tight">Modul Video Edukasi</h2>
-                        <p class="text-slate-400 text-sm">Akses penuh modul setelah bergabung dengan ekosistem Traders Family</p>
+                        <p class="text-slate-400 text-sm">Akses 3 modul gratis, dan 10+ modul premium setelah bergabung dengan ekosistem</p>
                     </div>
-                    <div class="flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-xl">
-                        <i data-lucide="info" class="w-4 h-4 text-amber-500"></i>
-                        <span class="text-xs font-bold text-amber-500">Modul 4-13 perlu akses member</span>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/30 rounded-xl">
+                        <i data-lucide="unlock" class="w-4 h-4 text-emerald-500"></i>
+                        <span class="text-xs font-bold text-emerald-500">3 Gratis • 10+ Premium</span>
                     </div>
                 </div>
                 
@@ -130,24 +152,29 @@
                     <!-- Dinamis via JS -->
                 </div>
 
-                <!-- Locked Content Notice -->
-                <div id="lockedNotice" class="glass mt-8 p-6 rounded-2xl border border-emerald-500/30 hidden">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-emerald-500/10 p-3 rounded-xl">
-                            <i data-lucide="lock" class="w-6 h-6 text-emerald-500"></i>
+                <!-- Access Flow Guide -->
+                <div class="glass mt-12 p-8 rounded-3xl border border-emerald-500/20">
+                    <h3 class="text-lg font-black uppercase mb-6 text-center text-emerald-500">Cara Akses Modul Premium</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="process-step p-4">
+                            <h4 class="text-sm font-bold uppercase mb-2">1. Daftar Akun</h4>
+                            <p class="text-slate-400 text-xs">Klik tombol daftar di bawah untuk bergabung dengan ekosistem Traders Family secara GRATIS</p>
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-lg font-black text-emerald-500 mb-2">Akses Member Diperlukan</h3>
-                            <p class="text-slate-400 text-sm mb-4">Modul video premium ini hanya tersedia untuk member yang telah bergabung dengan ekosistem Traders Family. Daftar sekarang untuk mengakses semua konten edukasi secara GRATIS!</p>
-                            <div class="flex flex-wrap gap-3">
-                                <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-bold text-xs uppercase tracking-widest transition-all flex items-center gap-2">
-                                    <i data-lucide="external-link" class="w-3 h-3"></i> Daftar Sekarang (Gratis)
-                                </a>
-                                <button onclick="showTab('ecosystem')" class="px-6 py-3 glass hover:bg-white/10 rounded-xl font-bold text-xs uppercase tracking-widest transition-all">
-                                    Pelajari Ekosistem
-                                </button>
-                            </div>
+                        <div class="process-step p-4">
+                            <h4 class="text-sm font-bold uppercase mb-2">2. Verifikasi Email</h4>
+                            <p class="text-slate-400 text-xs">Cek email Anda untuk verifikasi dan akses dashboard member area</p>
                         </div>
+                        <div class="process-step p-4">
+                            <h4 class="text-sm font-bold uppercase mb-2">3. Akses Member Area</h4>
+                            <p class="text-slate-400 text-xs">Login ke dashboard untuk mengakses semua modul video premium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-xl shadow-emerald-600/20">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i> DAFTAR SEKARANG - GRATIS
+                        </a>
+                        <p class="text-[10px] text-slate-500 mt-3">Setelah mendaftar, Anda akan mendapatkan akses ke Member Area dengan semua modul</p>
                     </div>
                 </div>
             </div>
@@ -202,19 +229,44 @@
 
             <!-- Section: Ecosystem -->
             <div id="ecosystem" class="tab-content hidden animate-in fade-in duration-300 max-w-5xl mx-auto">
-                <h2 class="text-2xl font-black uppercase mb-6 tracking-tight text-purple-500">Ekosistem & Pendaftaran</h2>
+                <h2 class="text-2xl font-black uppercase mb-6 tracking-tight text-purple-500">Ekosistem & Member Area</h2>
+                
+                <div class="glass p-8 rounded-3xl mb-8 border border-emerald-500/20">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="bg-emerald-500/10 p-5 rounded-2xl">
+                            <i data-lucide="shield-check" class="w-12 h-12 text-emerald-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-black uppercase mb-2">Status Keanggotaan Anda</h3>
+                            <p class="text-slate-400 text-sm mb-4">Bergabung dengan ekosistem memberikan akses ke semua fitur premium termasuk modul video lengkap, tools analisis, dan komunitas eksklusif.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-bold text-xs uppercase tracking-widest transition-all flex items-center gap-2">
+                                    <i data-lucide="log-in" class="w-3 h-3"></i> Login Member Area
+                                </a>
+                                <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="px-6 py-3 glass hover:bg-white/10 rounded-xl font-bold text-xs uppercase tracking-widest transition-all flex items-center gap-2">
+                                    <i data-lucide="user-plus" class="w-3 h-3"></i> Daftar Baru
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="glass p-8 rounded-3xl hover:border-emerald-500/30 transition-all">
-                        <i data-lucide="globe" class="text-emerald-500 mb-4 h-10 w-10"></i>
-                        <h3 class="text-lg font-black uppercase mb-2">Portal Traders Family</h3>
-                        <p class="text-slate-400 text-xs mb-8 leading-relaxed">Daftar akun ekosistem untuk mengakses simulasi analis dan fitur profesional melalui link partner saya.</p>
-                        <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 bg-emerald-600 hover:bg-emerald-500 rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Daftar Akun <i data-lucide="external-link" class="w-3"></i></a>
+                        <i data-lucide="video" class="text-emerald-500 mb-4 h-10 w-10"></i>
+                        <h3 class="text-lg font-black uppercase mb-2">Modul Video Lengkap</h3>
+                        <p class="text-slate-400 text-xs mb-6 leading-relaxed">Akses 13+ modul video edukasi trading profesional dari dasar hingga advanced setelah bergabung.</p>
+                        <div class="flex items-center text-[10px] font-bold text-emerald-500 uppercase tracking-widest">
+                            <i data-lucide="check-circle" class="w-3 h-3 mr-2"></i> Tersedia di Member Area
+                        </div>
                     </div>
                     <div class="glass p-8 rounded-3xl hover:border-blue-500/30 transition-all">
-                        <i data-lucide="landmark" class="text-blue-500 mb-4 h-10 w-10"></i>
-                        <h3 class="text-lg font-black uppercase mb-2">Broker Partner</h3>
-                        <p class="text-slate-400 text-xs mb-8 leading-relaxed">Gunakan broker partner terpercaya yang sudah terintegrasi dengan standar ekosistem TF.</p>
-                        <a href="https://link.tradersfamily.id/EgMFWkRVcl1MRg" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Lihat Broker <i data-lucide="external-link" class="w-3"></i></a>
+                        <i data-lucide="bar-chart" class="text-blue-500 mb-4 h-10 w-10"></i>
+                        <h3 class="text-lg font-black uppercase mb-2">Tools Analisis</h3>
+                        <p class="text-slate-400 text-xs mb-6 leading-relaxed">Fitur analisis teknikal, kalender ekonomi, dan sinyal trading eksklusif untuk member.</p>
+                        <div class="flex items-center text-[10px] font-bold text-blue-500 uppercase tracking-widest">
+                            <i data-lucide="check-circle" class="w-3 h-3 mr-2"></i> Tersedia di Member Area
+                        </div>
                     </div>
                 </div>
             </div>
@@ -245,44 +297,54 @@
         </div>
     </div>
 
-    <!-- Locked Content Modal -->
-    <div id="lockedModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 backdrop-blur-3xl bg-black/80 animate-in fade-in duration-300">
-        <div class="w-full max-w-md glass rounded-3xl p-8 shadow-2xl relative">
-            <button onclick="closeLockedModal()" class="absolute top-4 right-4 text-slate-400 p-2 hover:text-emerald-500 transition-all"><i data-lucide="x" class="w-5 h-5"></i></button>
+    <!-- Member Access Modal -->
+    <div id="memberModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 backdrop-blur-3xl bg-black/80 animate-in fade-in duration-300">
+        <div class="w-full max-w-lg glass rounded-3xl p-8 shadow-2xl relative">
+            <button onclick="closeMemberModal()" class="absolute top-4 right-4 text-slate-400 p-2 hover:text-emerald-500 transition-all"><i data-lucide="x" class="w-5 h-5"></i></button>
             
             <div class="text-center mb-6">
-                <div class="inline-flex bg-amber-500/10 p-5 rounded-2xl mb-4">
-                    <i data-lucide="lock" class="w-10 h-10 text-amber-500"></i>
+                <div class="inline-flex bg-gradient-to-r from-emerald-500/10 to-blue-500/10 p-5 rounded-2xl mb-4 border border-emerald-500/30">
+                    <i data-lucide="crown" class="w-10 h-10 text-emerald-500"></i>
                 </div>
-                <h3 class="text-xl font-black uppercase mb-2 text-amber-500">Konten Terkunci</h3>
-                <p class="text-slate-400 text-sm">Modul ini membutuhkan akses member ekosistem Traders Family</p>
+                <h3 class="text-xl font-black uppercase mb-2 text-emerald-500">Akses Member Diperlukan</h3>
+                <p class="text-slate-400 text-sm">Modul premium ini hanya tersedia untuk member Traders Family</p>
             </div>
             
-            <div class="space-y-4">
-                <div class="flex items-center gap-3 p-4 bg-emerald-500/5 border border-emerald-500/20 rounded-xl">
-                    <i data-lucide="check-circle" class="w-5 h-5 text-emerald-500 flex-shrink-0"></i>
+            <div class="space-y-4 mb-6">
+                <div class="flex items-start gap-3 p-4 bg-emerald-500/5 border border-emerald-500/20 rounded-xl">
+                    <i data-lucide="play-circle" class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5"></i>
                     <div>
-                        <p class="text-xs font-bold text-emerald-500 mb-1">Akses GRATIS</p>
-                        <p class="text-[10px] text-slate-400">Bergabung dengan ekosistem Traders Family sepenuhnya gratis</p>
+                        <p class="text-xs font-bold text-emerald-500 mb-1">13+ Modul Video Lengkap</p>
+                        <p class="text-[10px] text-slate-400">Dari dasar sampai strategi trading profesional</p>
                     </div>
                 </div>
                 
-                <div class="flex items-center gap-3 p-4 bg-blue-500/5 border border-blue-500/20 rounded-xl">
-                    <i data-lucide="video" class="w-5 h-5 text-blue-500 flex-shrink-0"></i>
+                <div class="flex items-start gap-3 p-4 bg-blue-500/5 border border-blue-500/20 rounded-xl">
+                    <i data-lucide="bar-chart" class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5"></i>
                     <div>
-                        <p class="text-xs font-bold text-blue-500 mb-1">10+ Modul Premium</p>
-                        <p class="text-[10px] text-slate-400">Dapatkan akses ke semua video edukasi trading profesional</p>
+                        <p class="text-xs font-bold text-blue-500 mb-1">Tools & Analisis Eksklusif</p>
+                        <p class="text-[10px] text-slate-400">Fitur khusus member untuk analisis trading</p>
                     </div>
                 </div>
             </div>
             
-            <div class="mt-8 space-y-3">
+            <div class="bg-slate-800/50 rounded-xl p-4 mb-6">
+                <h4 class="text-xs font-bold uppercase mb-2 text-slate-300">Cara Akses:</h4>
+                <ol class="text-[10px] text-slate-400 space-y-2 pl-4 list-decimal">
+                    <li>Daftar akun GRATIS di Traders Family</li>
+                    <li>Verifikasi email Anda</li>
+                    <li>Login ke Member Area</li>
+                    <li>Akses semua modul video premium</li>
+                </ol>
+            </div>
+            
+            <div class="space-y-3">
                 <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="block w-full py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 rounded-2xl text-xs font-black uppercase tracking-widest transition-all text-center shadow-xl shadow-emerald-600/20">
                     DAFTAR SEKARANG - GRATIS
                 </a>
-                <button onclick="closeLockedModal()" class="block w-full py-4 glass hover:bg-white/10 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all">
-                    Nanti Saja
-                </button>
+                <div class="text-center">
+                    <p class="text-[10px] text-slate-500">Sudah punya akun? <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="text-emerald-500 font-bold hover:text-emerald-400">Login ke Member Area</a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -308,9 +370,6 @@
             
             if(window.innerWidth < 1024) toggleSidebar(false);
             window.scrollTo(0, 0);
-            
-            // Reset locked notice
-            document.getElementById('lockedNotice').classList.add('hidden');
         }
 
         function toggleSidebar(state) {
@@ -329,7 +388,7 @@
             div.className = `group ${isLocked ? 'locked-card' : ''} glass rounded-2xl overflow-hidden cursor-pointer hover:border-emerald-500 transition-all animate-in slide-in-from-bottom duration-500 shadow-lg`;
             
             if (isLocked) {
-                div.onclick = () => openLockedModal(idx + 1);
+                div.onclick = () => openMemberModal(idx + 1);
             } else {
                 div.onclick = () => openVideo(id);
             }
@@ -338,34 +397,33 @@
                 <div class="aspect-video relative overflow-hidden">
                     <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all scale-105 group-hover:scale-100">
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/20">
-                        <div class="bg-emerald-500 p-4 rounded-full shadow-2xl">
-                            ${isLocked ? '<i data-lucide="lock" fill="white"></i>' : '<i data-lucide="play" fill="white"></i>'}
+                        <div class="${isLocked ? 'bg-gradient-to-r from-amber-500 to-amber-600' : 'bg-emerald-500'} p-4 rounded-full shadow-2xl">
+                            ${isLocked ? '<i data-lucide="crown" fill="white"></i>' : '<i data-lucide="play" fill="white"></i>'}
                         </div>
                     </div>
-                    <div class="absolute top-3 left-3 px-3 py-1 bg-black/80 border border-white/10 rounded-lg text-[10px] font-black uppercase text-white tracking-widest">
-                        Modul ${idx+1} ${isLocked ? '<i data-lucide="lock" class="w-3 h-3 inline ml-1"></i>' : ''}
+                    <div class="absolute top-3 left-3 px-3 py-1 ${isLocked ? 'bg-gradient-to-r from-amber-500/90 to-amber-600/90' : 'bg-emerald-500/90'} border border-white/10 rounded-lg text-[10px] font-black uppercase text-white tracking-widest">
+                        ${isLocked ? '<i data-lucide="crown" class="w-3 h-3 inline mr-1"></i>' : '<i data-lucide="play" class="w-3 h-3 inline mr-1"></i>'}
+                        Modul ${idx+1} ${isLocked ? 'PREMIUM' : 'GRATIS'}
                     </div>
                     ${isLocked ? `
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/60">
-                            <div class="text-center p-4">
-                                <div class="bg-amber-500/20 p-3 rounded-xl inline-block mb-2">
-                                    <i data-lucide="lock" class="w-6 h-6 text-amber-500"></i>
-                                </div>
-                                <p class="text-xs font-bold text-white uppercase tracking-widest">Perlu Akses Member</p>
-                            </div>
+                        <div class="absolute inset-0 flex items-end justify-center p-4 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                            <span class="text-xs font-bold text-white text-center">Klik untuk info akses member</span>
                         </div>
                     ` : ''}
                 </div>
                 <div class="p-4">
-                    <h3 class="text-xs font-bold uppercase mb-1">Modul ${idx+1}: Trading Mastery</h3>
-                    <p class="text-[10px] text-slate-400">${isLocked ? 'Bergabung dengan ekosistem untuk membuka modul ini' : 'Video edukasi trading profesional'}</p>
+                    <h3 class="text-xs font-bold uppercase mb-1 flex items-center gap-2">
+                        ${isLocked ? '<i data-lucide="crown" class="w-3 h-3 text-amber-500"></i>' : '<i data-lucide="play" class="w-3 h-3 text-emerald-500"></i>'}
+                        Modul ${idx+1}: ${isLocked ? 'Strategi Premium' : 'Dasar Trading'}
+                    </h3>
+                    <p class="text-[10px] text-slate-400">${isLocked ? '🔒 Akses di Member Area setelah bergabung' : '✓ Tersedia untuk semua pengunjung'}</p>
                 </div>
             `;
             grid.appendChild(div);
         });
         lucide.createIcons(); // Refresh icons for new elements
 
-        // Video Player
+        // Video Player (untuk modul gratis)
         function openVideo(id) {
             const modal = document.getElementById('videoModal');
             const player = document.getElementById('videoPlayer');
@@ -380,18 +438,15 @@
             modal.classList.add('hidden');
         }
 
-        // Locked Content Modal
-        function openLockedModal(moduleNumber) {
-            const modal = document.getElementById('lockedModal');
+        // Member Access Modal (untuk modul premium)
+        function openMemberModal(moduleNumber) {
+            const modal = document.getElementById('memberModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            
-            // Show notice in education tab
-            document.getElementById('lockedNotice').classList.remove('hidden');
         }
 
-        function closeLockedModal() {
-            const modal = document.getElementById('lockedModal');
+        function closeMemberModal() {
+            const modal = document.getElementById('memberModal');
             modal.classList.add('hidden');
         }
 
