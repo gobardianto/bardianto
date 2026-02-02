@@ -268,4 +268,177 @@
                 </div>
                 
                 <div class="flex items-center gap-3 p-4 bg-blue-500/5 border border-blue-500/20 rounded-xl">
-                    <i data-lucide="video" class="w-5
+                    <i data-lucide="video" class="w-5 h-5 text-blue-500 flex-shrink-0"></i>
+                    <div>
+                        <p class="text-xs font-bold text-blue-500 mb-1">10+ Modul Premium</p>
+                        <p class="text-[10px] text-slate-400">Dapatkan akses ke semua video edukasi trading profesional</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 space-y-3">
+                <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="block w-full py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 rounded-2xl text-xs font-black uppercase tracking-widest transition-all text-center shadow-xl shadow-emerald-600/20">
+                    DAFTAR SEKARANG - GRATIS
+                </a>
+                <button onclick="closeLockedModal()" class="block w-full py-4 glass hover:bg-white/10 rounded-2xl text-xs font-bold uppercase tracking-widest transition-all">
+                    Nanti Saja
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Video
+        const videos = ["Fj_TdF59d3w", "f-gvCqc1BtU", "hXz3NBaVX9g", "r28SESkand0", "37IzS9Q1XXI", "eZ41goJIymc", "pHnfAgcGSr0", "qR9pPlMZhpY", "QXogzDBF_Mw", "4KirlAep_p4", "hiBLsyIgkcc", "oICqq1l6xCo", "hQJV_npNCYY"];
+        
+        // Calculator State
+        let currentMode = 'BUY';
+
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Navigation Function
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active-tab'));
+            const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.textContent.toLowerCase().includes(tabId.substring(0, 4)));
+            if(activeBtn) activeBtn.classList.add('active-tab');
+            
+            if(window.innerWidth < 1024) toggleSidebar(false);
+            window.scrollTo(0, 0);
+            
+            // Reset locked notice
+            document.getElementById('lockedNotice').classList.add('hidden');
+        }
+
+        function toggleSidebar(state) {
+            const sidebar = document.getElementById('sidebar');
+            if(state === undefined) sidebar.classList.toggle('-translate-x-full');
+            else if(state) sidebar.classList.remove('-translate-x-full');
+            else sidebar.classList.add('-translate-x-full');
+        }
+
+        // Render Videos
+        const grid = document.getElementById('video-grid');
+        videos.forEach((id, idx) => {
+            const isLocked = idx >= 3; // Video 4-13 terkunci (index 3-12)
+            
+            const div = document.createElement('div');
+            div.className = `group ${isLocked ? 'locked-card' : ''} glass rounded-2xl overflow-hidden cursor-pointer hover:border-emerald-500 transition-all animate-in slide-in-from-bottom duration-500 shadow-lg`;
+            
+            if (isLocked) {
+                div.onclick = () => openLockedModal(idx + 1);
+            } else {
+                div.onclick = () => openVideo(id);
+            }
+            
+            div.innerHTML = `
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all scale-105 group-hover:scale-100">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/20">
+                        <div class="bg-emerald-500 p-4 rounded-full shadow-2xl">
+                            ${isLocked ? '<i data-lucide="lock" fill="white"></i>' : '<i data-lucide="play" fill="white"></i>'}
+                        </div>
+                    </div>
+                    <div class="absolute top-3 left-3 px-3 py-1 bg-black/80 border border-white/10 rounded-lg text-[10px] font-black uppercase text-white tracking-widest">
+                        Modul ${idx+1} ${isLocked ? '<i data-lucide="lock" class="w-3 h-3 inline ml-1"></i>' : ''}
+                    </div>
+                    ${isLocked ? `
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/60">
+                            <div class="text-center p-4">
+                                <div class="bg-amber-500/20 p-3 rounded-xl inline-block mb-2">
+                                    <i data-lucide="lock" class="w-6 h-6 text-amber-500"></i>
+                                </div>
+                                <p class="text-xs font-bold text-white uppercase tracking-widest">Perlu Akses Member</p>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xs font-bold uppercase mb-1">Modul ${idx+1}: Trading Mastery</h3>
+                    <p class="text-[10px] text-slate-400">${isLocked ? 'Bergabung dengan ekosistem untuk membuka modul ini' : 'Video edukasi trading profesional'}</p>
+                </div>
+            `;
+            grid.appendChild(div);
+        });
+        lucide.createIcons(); // Refresh icons for new elements
+
+        // Video Player
+        function openVideo(id) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            player.src = `https://www.youtube.com/embed/${id}?autoplay=1&modestbranding=1&rel=0`;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            document.getElementById('videoPlayer').src = '';
+            modal.classList.add('hidden');
+        }
+
+        // Locked Content Modal
+        function openLockedModal(moduleNumber) {
+            const modal = document.getElementById('lockedModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Show notice in education tab
+            document.getElementById('lockedNotice').classList.remove('hidden');
+        }
+
+        function closeLockedModal() {
+            const modal = document.getElementById('lockedModal');
+            modal.classList.add('hidden');
+        }
+
+        // Calculator Logic
+        function setCalcMode(mode) {
+            currentMode = mode;
+            document.getElementById('btn-buy').className = mode === 'BUY' ? 'flex-1 py-2.5 rounded-lg text-xs font-bold active-tab' : 'flex-1 py-2.5 rounded-lg text-xs font-bold text-slate-500';
+            document.getElementById('btn-sell').className = mode === 'SELL' ? 'flex-1 py-2.5 rounded-lg text-xs font-bold active-tab' : 'flex-1 py-2.5 rounded-lg text-xs font-bold text-slate-500';
+            calculate();
+        }
+
+        function calculate() {
+            const balance = parseFloat(document.getElementById('balance').value) || 0;
+            const riskP = parseFloat(document.getElementById('riskPercent').value) || 0;
+            const entry = parseFloat(document.getElementById('entryPrice').value) || 0;
+            const sl = parseFloat(document.getElementById('slPrice').value) || 0;
+            const tp = parseFloat(document.getElementById('tpPrice').value) || 0;
+
+            let slDiff = currentMode === 'BUY' ? (entry - sl) : (sl - entry);
+            let tpDiff = currentMode === 'BUY' ? (tp - entry) : (entry - tp);
+            
+            const slPips = slDiff * 10;
+            const riskUSD = (balance * riskP) / 100;
+            
+            let lot = slPips > 0 ? (riskUSD / (slPips * 10)) : 0;
+            lot = Math.max(0, Math.floor(lot * 100) / 100);
+            
+            const actualLoss = slPips > 0 ? (slPips * lot * 10) : 0;
+            const actualProfit = tpDiff > 0 ? (tpDiff * 10 * lot * 10) : 0;
+            const rr = slPips > 0 && tpDiff > 0 ? (tpDiff / slDiff).toFixed(1) : "0.0";
+
+            document.getElementById('result-lot').textContent = lot.toFixed(2);
+            document.getElementById('result-risk').textContent = `-$${actualLoss.toFixed(2)}`;
+            document.getElementById('result-reward').textContent = `+$${actualProfit.toFixed(2)}`;
+            document.getElementById('result-rr').textContent = `Ratio 1:${rr}`;
+        }
+        
+        calculate(); // Initial calc
+        
+        // Auto show education tab on video grid click from welcome
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.textContent.includes('Mulai Belajar')) {
+                btn.onclick = () => {
+                    showTab('education');
+                };
+            }
+        });
+    </script>
+</body>
+</html>
