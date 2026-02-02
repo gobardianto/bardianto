@@ -1,238 +1,308 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0f172a">
     
-    <title>Bardianto | Dokumentasi Investor & Analyst XAUUSD</title>
-    <meta name="description" content="Portofolio resmi Bagus Ardianto Adi Saputro (Bardianto). Analisa teknikal dan seasonality XAUUSD berbasis data backtest. Domisili Semarang.">
-    <meta name="keywords" content="Bardianto, Bagus Ardianto Adi Saputro, Analisa XAUUSD, Investor, Trader Semarang, Teknikal Analisa, Gold Analyst">
+    <!-- SEO Meta Tags -->
+    <title>Traders Family Edukasi - Kalkulator XAUUSD & Modul Trading Affiliate</title>
+    <meta name="description" content="Platform edukasi trading gratis dan kalkulator risiko XAUUSD presisi. Bergabunglah dengan ekosistem Traders Family melalui link affiliate resmi kami.">
+    <meta name="keywords" content="Traders Family, Kalkulator XAUUSD, Trading Forex, Edukasi Trading, Affiliate Traders Family, Manajemen Risiko Gold">
+    <meta name="author" content="TF Affiliate Partner">
     <meta name="robots" content="index, follow">
-    <meta name="google-site-verification" content="6EAFvI4WpfkLa0SLVtxzK4q3WdByuyuaKAjE8dmgYk" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        neon: '#39FF14',
-                        dark: '#020617',
-                        glass: 'rgba(15, 23, 42, 0.65)',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                    }
-                }
-            }
-        }
+    <!-- Open Graph (Facebook/WhatsApp) -->
+    <meta property="og:title" content="Traders Family Edukasi - Partner Affiliate">
+    <meta property="og:description" content="Belajar trading gratis dengan modul video dan hitung lot XAUUSD secara presisi.">
+    <meta property="og:type" content="website">
+
+    <!-- Schema.org for Google Search Console -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Traders Family Edukasi",
+      "description": "Portal edukasi trading independen dan tools manajemen risiko XAUUSD.",
+      "url": "https://username-anda.github.io/repo-anda"
+    }
     </script>
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            background-color: #020617;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(57, 255, 20, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(15, 23, 42, 1) 0px, transparent 50%),
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            background-attachment: fixed;
-            color: #e2e8f0;
-        }
-
-        .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .reveal-section {
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transform: scale(0.95) translateY(-10px);
-        }
-        .reveal-section.active {
-            max-height: 1200px;
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .overslide-x {
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-        }
-        .overslide-x::-webkit-scrollbar { display: none; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #070b14; color: #f1f5f9; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .active-tab { background-color: #10b981 !important; color: white !important; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 lg:p-12 flex flex-col items-center">
+<body class="min-h-screen">
 
-    <main class="w-full max-w-5xl mx-auto space-y-8 relative z-10">
+    <!-- Sidebar & Navigation -->
+    <div class="flex flex-col lg:flex-row min-h-screen">
         
-        <header class="glass-card rounded-3xl p-6 md:p-10 relative overflow-hidden group">
-            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div class="relative shrink-0">
-                    <div class="absolute -inset-1 rounded-full bg-gradient-to-tr from-neon to-transparent opacity-70 blur group-hover:opacity-100 transition duration-500"></div>
-                    <img src="profile.png" alt="Bagus Ardianto" class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-white/10" onerror="this.src='https://ui-avatars.com/api/?name=Bagus+Ardianto&background=0f172a&color=39FF14&size=200'">
+        <!-- Sidebar Desktop -->
+        <aside id="sidebar" class="fixed lg:sticky top-0 h-screen w-64 bg-[#0d1421] border-r border-white/5 p-6 flex flex-col gap-6 transform -translate-x-full lg:translate-x-0 transition-transform z-50">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="showTab('welcome')">
+                    <i data-lucide="trending-up" class="text-emerald-500"></i>
+                    <span class="font-extrabold text-sm uppercase tracking-tighter italic">TF Affiliate</span>
                 </div>
-
-                <div class="text-center md:text-left flex-1 space-y-3">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon/10 border border-neon/20">
-                        <span class="w-2 h-2 rounded-full bg-neon animate-pulse"></span>
-                        <span class="text-xs font-bold tracking-widest uppercase text-neon">Investor & Analyst</span>
-                    </div>
-                    <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Bagus Ardianto</h1>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-slate-400 text-sm">
-                        <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-4 h-4 text-neon"></i> Semarang, ID</span>
-                        <span class="flex items-center gap-1"><i data-lucide="hourglass" class="w-4 h-4 text-neon"></i> <span id="age-display">...</span></span>
-                    </div>
-                    <div class="pt-4 flex flex-wrap justify-center md:justify-start gap-4">
-                        <button onclick="toggleSection('contact')" class="px-6 py-2.5 rounded-xl bg-neon text-dark font-bold text-sm hover:shadow-[0_0_20px_rgba(57,255,20,0.4)] transition-all flex items-center gap-2">
-                            <i data-lucide="message-square" class="w-4 h-4"></i> Hubungi
-                        </button>
-                        <button onclick="toggleSection('donation')" class="px-6 py-2.5 rounded-xl glass-card text-white font-medium text-sm hover:border-neon/50 transition-all flex items-center gap-2">
-                            <i data-lucide="qr-code" class="w-4 h-4 text-neon"></i> Pembayaran
-                        </button>
-                    </div>
-                </div>
+                <button class="lg:hidden" onclick="toggleSidebar()"><i data-lucide="x"></i></button>
             </div>
-        </header>
 
-        <section id="donation" class="reveal-section">
-            <div class="glass-card rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-                <div class="grid grid-cols-1 lg:grid-cols-2">
-                    
-                    <div class="p-8 md:p-12 flex flex-col justify-center space-y-6 bg-gradient-to-br from-neon/5 to-transparent">
-                        <div class="space-y-2">
-                            <h2 class="text-3xl font-bold text-white tracking-tight">Dukungan <span class="text-neon underline decoration-neon/30 underline-offset-8">QRIS</span></h2>
-                            <p class="text-slate-400 leading-relaxed">Scan atau unduh kode QR di samping untuk donasi, pembayaran layanan analisa, atau dukungan riset XAUUSD.</p>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 text-sm text-slate-300">
-                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10"><i data-lucide="check" class="w-5 h-5 text-neon"></i></div>
-                                <span>Mendukung Semua E-Wallet & Mobile Banking</span>
-                            </div>
-                            <div class="flex items-center gap-4 text-sm text-slate-300">
-                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10"><i data-lucide="zap" class="w-5 h-5 text-neon"></i></div>
-                                <span>Proses Instan & Keamanan Terjamin</span>
-                            </div>
-                        </div>
+            <nav class="flex flex-col gap-2 mt-4">
+                <button onclick="showTab('education')" class="nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-all font-bold text-xs uppercase">
+                    <i data-lucide="graduation-cap" class="w-4"></i> Modul Video
+                </button>
+                <button onclick="showTab('calculator')" class="nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-all font-bold text-xs uppercase">
+                    <i data-lucide="calculator" class="w-4"></i> Kalkulator Risk
+                </button>
+                <button onclick="showTab('ecosystem')" class="nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-all font-bold text-xs uppercase">
+                    <i data-lucide="globe" class="w-4"></i> Ekosistem Resmi
+                </button>
+                <button onclick="showTab('community')" class="nav-btn flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-all font-bold text-xs uppercase text-green-500">
+                    <i data-lucide="users" class="w-4"></i> Join Komunitas
+                </button>
+            </nav>
 
-                        <div class="pt-4">
-                            <a href="QRIS-1.png" download="QRIS-Bardianto.png" class="inline-flex items-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-white font-semibold transition-all group">
-                                <i data-lucide="download" class="w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
-                                Unduh Kode QR
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="bg-dark/40 p-8 md:p-12 flex items-center justify-center relative">
-                        <div class="absolute top-8 left-8 w-8 h-8 border-t-2 border-l-2 border-neon/30"></div>
-                        <div class="absolute bottom-8 right-8 w-8 h-8 border-b-2 border-r-2 border-neon/30"></div>
-                        
-                        <div class="relative group cursor-zoom-in">
-                            <div class="absolute -inset-4 bg-neon/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div class="relative p-6 bg-white rounded-3xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-                                <img src="QRIS-1.png" alt="QRIS Bardianto" class="w-64 h-auto md:w-72 mix-blend-multiply" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=Bardianto-Payment'">
-                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/5 backdrop-blur-[2px] rounded-3xl">
-                                    <span class="bg-dark text-white text-xs font-bold px-4 py-2 rounded-full border border-neon/50">KLIK KANAN UNTUK SIMPAN</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="mt-auto border-t border-white/5 pt-4">
+                <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
+                    Independent Affiliate Website<br>Not Official Traders Family
+                </p>
             </div>
-        </section>
+        </aside>
 
-        <div id="contact" class="reveal-section glass-card rounded-2xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="mailto:bardianto210@gmail.com" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-neon/10 transition border border-transparent hover:border-neon/30">
-                <i data-lucide="mail" class="w-6 h-6 text-neon"></i>
-                <div><p class="text-xs text-slate-400 uppercase">Email</p><p class="text-white font-medium">bardianto210@gmail.com</p></div>
-            </a>
-            <a href="https://wa.me/6281930000298" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-neon/10 transition border border-transparent hover:border-neon/30">
-                <i data-lucide="phone" class="w-6 h-6 text-neon"></i>
-                <div><p class="text-xs text-slate-400 uppercase">WhatsApp</p><p class="text-white font-medium">+62 819-3000-0298</p></div>
-            </a>
+        <!-- Mobile Header -->
+        <div class="lg:hidden flex items-center justify-between p-4 bg-[#0d1421] border-b border-white/5 sticky top-0 z-40">
+            <div class="flex items-center gap-2">
+                <i data-lucide="trending-up" class="text-emerald-500"></i>
+                <span class="font-extrabold text-sm uppercase tracking-tighter italic">TF Affiliate</span>
+            </div>
+            <button onclick="toggleSidebar()" class="p-2 glass rounded-lg"><i data-lucide="menu"></i></button>
         </div>
 
-        <section class="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div class="md:col-span-7 glass-card rounded-3xl p-8 flex flex-col justify-center border-l-4 border-l-neon">
-                <i data-lucide="quote" class="w-8 h-8 text-neon/20 mb-4"></i>
-                <blockquote class="text-lg md:text-xl text-slate-200 font-light italic leading-relaxed">
-                    "Saya percaya sepenuhnya pada data backtest yang meliputi probabilitas. Metode saya adalah teknikal dan seasonality."
-                </blockquote>
-            </div>
-            <div class="md:col-span-5 glass-card rounded-3xl p-8 space-y-6">
-                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-[0.2em]">Pendidikan</h3>
-                <div class="flex items-start gap-4">
-                    <i data-lucide="graduation-cap" class="w-6 h-6 text-neon mt-1"></i>
-                    <div><p class="text-white font-semibold">SMAN 10 Semarang</p><p class="text-sm text-slate-500">Alumni</p></div>
+        <!-- Main Content -->
+        <main class="flex-1 p-6 md:p-10">
+            
+            <!-- Section: Welcome -->
+            <div id="welcome" class="tab-content flex flex-col items-center justify-center min-h-[70vh] text-center animate-in fade-in zoom-in duration-500">
+                <div class="bg-emerald-500/10 p-5 rounded-3xl mb-6"><i data-lucide="graduation-cap" class="w-12 h-12 text-emerald-500"></i></div>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 uppercase tracking-tighter">Traders Family <br><span class="text-emerald-500 italic">Affiliate Edukasi</span></h1>
+                <p class="text-slate-400 max-w-lg mb-10 text-sm md:text-base leading-relaxed">Portal mandiri untuk mempelajari teknik trading profesional dan tools manajemen risiko standar ekosistem Traders Family.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="showTab('education')" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-500 rounded-2xl font-black text-xs uppercase tracking-widest transition-all shadow-xl shadow-emerald-600/20">Mulai Belajar</button>
+                    <button onclick="showTab('calculator')" class="px-8 py-4 glass hover:bg-white/10 rounded-2xl font-black text-xs uppercase tracking-widest transition-all">Kalkulator Lot</button>
                 </div>
             </div>
-        </section>
 
-        <section class="space-y-6">
-            <h2 class="text-2xl font-bold text-white px-2">Portofolio </span></h2>
-            <div class="overslide-x flex gap-6 pb-6 px-1 snap-x">
-                <div class="snap-item shrink-0 w-[85%] md:w-[45%] aspect-video relative rounded-3xl overflow-hidden glass-card group">
-                    <img src="porto-1.png" alt="Analisa 1" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
-                    <div class="absolute bottom-6 left-6"><p class="text-neon text-xs font-bold uppercase mb-1">Portofolio Pertama</p><h3 class="text-xl font-bold text-white">Growth</h3></div>
-                </div>
-                <div class="snap-item shrink-0 w-[85%] md:w-[45%] aspect-video relative rounded-3xl overflow-hidden glass-card group">
-                    <img src="porto-2.png" alt="Analisa 2" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
-                    <div class="absolute bottom-6 left-6"><p class="text-neon text-xs font-bold uppercase mb-1">Portofolio Kedua</p><h3 class="text-xl font-bold text-white">Data</h3></div>
+            <!-- Section: Education -->
+            <div id="education" class="tab-content hidden animate-in fade-in duration-300">
+                <h2 class="text-2xl font-black uppercase mb-6 tracking-tight">Modul Video Edukasi</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5" id="video-grid">
+                    <!-- Dinamis via JS -->
                 </div>
             </div>
-        </section>
 
-        <footer class="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-500 text-sm pb-12">
-            <p>&copy; 2026 <span class="text-slate-300">Bardianto</span>. All rights reserved.</p>
-            <div class="flex gap-6">
-                <a href="https://www.tiktok.com/@ardiansaputro.id?_r=1&_t=ZS-93PouAQvXCG" target="_blank" rel="noopener noreferrer" class="hover:text-neon transition-colors"><i data-lucide="music" class="w-5 h-5"></i></a>
-                <a href="https://www.instagram.com/bardianto.my.id?igsh=MWlxMTh4cHVieHd6Mw==" class="hover:text-neon transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+            <!-- Section: Calculator -->
+            <div id="calculator" class="tab-content hidden animate-in fade-in duration-300 max-w-4xl mx-auto">
+                <h2 class="text-2xl font-black uppercase mb-6 tracking-tight">Kalkulator <span class="text-blue-500 italic">Risk XAUUSD</span></h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="flex glass p-1 rounded-xl">
+                            <button onclick="setCalcMode('BUY')" id="btn-buy" class="flex-1 py-2.5 rounded-lg text-xs font-bold active-tab transition-all">BUY</button>
+                            <button onclick="setCalcMode('SELL')" id="btn-sell" class="flex-1 py-2.5 rounded-lg text-xs font-bold text-slate-500 transition-all">SELL</button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-[9px] font-black text-slate-500 uppercase block mb-1 ml-1">Modal Akun ($)</label>
+                                <input type="number" id="balance" value="5000" oninput="calculate()" class="w-full glass rounded-xl p-3 outline-none focus:border-blue-500 transition-all font-bold">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-black text-slate-500 uppercase block mb-1 ml-1">Risiko (%)</label>
+                                <input type="number" id="riskPercent" value="1" oninput="calculate()" class="w-full glass rounded-xl p-3 outline-none focus:border-blue-500 transition-all font-bold">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-[9px] font-black text-slate-500 uppercase block mb-1 ml-1">Entry Price</label>
+                            <input type="number" id="entryPrice" value="2000.00" oninput="calculate()" step="0.01" class="w-full glass rounded-xl p-3 outline-none focus:border-blue-500 transition-all font-bold">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-[9px] font-black text-red-500 uppercase block mb-1 ml-1">Stop Loss</label>
+                                <input type="number" id="slPrice" value="1995.00" oninput="calculate()" step="0.01" class="w-full bg-red-500/5 border border-red-500/20 rounded-xl p-3 outline-none font-bold">
+                            </div>
+                            <div>
+                                <label class="text-[9px] font-black text-emerald-500 uppercase block mb-1 ml-1">Take Profit</label>
+                                <input type="number" id="tpPrice" value="2010.00" oninput="calculate()" step="0.01" class="w-full bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-3 outline-none font-bold">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <div class="bg-gradient-to-br from-blue-600 to-indigo-800 rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden">
+                            <span class="text-[9px] font-black text-blue-200 uppercase tracking-widest relative z-10">Rekomendasi Lot</span>
+                            <div id="result-lot" class="text-6xl font-black text-white my-2 relative z-10">0.10</div>
+                            <div id="result-rr" class="text-[10px] font-bold bg-white/20 inline-block px-4 py-1 rounded-full uppercase relative z-10">Ratio 1:2.0</div>
+                        </div>
+                        <div class="glass p-5 rounded-2xl space-y-3">
+                            <div class="flex justify-between items-center"><span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Risiko USD</span><span id="result-risk" class="text-sm font-black text-red-400">-$50.00</span></div>
+                            <div class="flex justify-between items-center"><span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Profit USD</span><span id="result-reward" class="text-sm font-black text-emerald-400">+$100.00</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </footer>
 
-    </main>
+            <!-- Section: Ecosystem -->
+            <div id="ecosystem" class="tab-content hidden animate-in fade-in duration-300 max-w-5xl mx-auto">
+                <h2 class="text-2xl font-black uppercase mb-6 tracking-tight text-purple-500">Ekosistem & Pendaftaran</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass p-8 rounded-3xl hover:border-emerald-500/30 transition-all">
+                        <i data-lucide="globe" class="text-emerald-500 mb-4 h-10 w-10"></i>
+                        <h3 class="text-lg font-black uppercase mb-2">Portal Traders Family</h3>
+                        <p class="text-slate-400 text-xs mb-8 leading-relaxed">Daftar akun ekosistem untuk mengakses simulasi analis dan fitur profesional melalui link affiliate saya.</p>
+                        <a href="https://account.tradersfamily.id/aff/609855/" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 bg-emerald-600 hover:bg-emerald-500 rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Daftar Akun <i data-lucide="external-link" class="w-3"></i></a>
+                    </div>
+                    <div class="glass p-8 rounded-3xl hover:border-blue-500/30 transition-all">
+                        <i data-lucide="landmark" class="text-blue-500 mb-4 h-10 w-10"></i>
+                        <h3 class="text-lg font-black uppercase mb-2">Broker Partner</h3>
+                        <p class="text-slate-400 text-xs mb-8 leading-relaxed">Gunakan broker partner terpercaya yang sudah terintegrasi dengan standar ekosistem TF.</p>
+                        <a href="https://link.tradersfamily.id/EgMFWkRVcl1MRg" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-2xl text-xs font-black uppercase tracking-widest transition-all">Lihat Broker <i data-lucide="external-link" class="w-3"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Community -->
+            <div id="community" class="tab-content hidden animate-in fade-in duration-300 max-w-2xl mx-auto text-center py-10">
+                <div class="inline-flex bg-green-500/10 p-6 rounded-3xl mb-6"><i data-lucide="message-square" class="w-12 h-12 text-green-500"></i></div>
+                <h2 class="text-3xl font-black uppercase mb-4 tracking-tighter">Komunitas Sharing</h2>
+                <p class="text-slate-400 text-sm mb-10 leading-relaxed">Berbagi analisa harian, psikologi trading, dan diskusi seputar perkembangan ekosistem Traders Family bersama member lainnya.</p>
+                <div class="glass p-10 rounded-[2.5rem] border-green-500/20 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-green-500"></div>
+                    <h3 class="text-lg font-bold uppercase mb-1">WhatsApp Group</h3>
+                    <p class="text-[10px] font-black text-slate-500 tracking-[0.3em] uppercase mb-8">Official Affiliate Group</p>
+                    <a href="https://chat.whatsapp.com/L85pvBWq1mqLQ37zk56B1g?mode=gi_c" target="_blank" class="flex items-center justify-center gap-3 py-4 bg-green-600 hover:bg-green-500 text-white rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl shadow-green-600/20">GABUNG SEKARANG <i data-lucide="arrow-right" class="w-4"></i></a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 backdrop-blur-3xl bg-black/80 animate-in fade-in duration-300">
+        <div class="w-full max-w-4xl relative">
+            <button onclick="closeVideo()" class="absolute -top-12 right-0 text-white p-2 hover:text-emerald-500 transition-all"><i data-lucide="x" class="w-8 h-8"></i></button>
+            <div class="aspect-video rounded-3xl overflow-hidden glass shadow-2xl">
+                <iframe id="videoPlayer" class="w-full h-full" allowfullscreen allow="autoplay"></iframe>
+            </div>
+        </div>
+    </div>
 
     <script>
+        // Data Video
+        const videos = ["Fj_TdF59d3w", "f-gvCqc1BtU", "hXz3NBaVX9g", "r28SESkand0", "37IzS9Q1XXI", "eZ41goJIymc", "pHnfAgcGSr0", "qR9pPlMZhpY", "QXogzDBF_Mw", "4KirlAep_p4", "hiBLsyIgkcc", "oICqq1l6xCo", "hQJV_npNCYY"];
+        
+        // Calculator State
+        let currentMode = 'BUY';
+
+        // Init Lucide Icons
         lucide.createIcons();
 
-        function updateAge() {
-            const birth = new Date('2005-11-05');
-            const now = new Date();
-            let age = now.getFullYear() - birth.getFullYear();
-            if (now.getMonth() < birth.getMonth() || (now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate())) age--;
-            document.getElementById('age-display').innerText = age + ' Tahun';
+        // Navigation Function
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active-tab'));
+            const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.textContent.toLowerCase().includes(tabId.substring(0, 4)));
+            if(activeBtn) activeBtn.classList.add('active-tab');
+            
+            if(window.innerWidth < 1024) toggleSidebar(false);
+            window.scrollTo(0, 0);
         }
-        updateAge();
 
-        function toggleSection(id) {
-            const section = document.getElementById(id);
-            const isActive = section.classList.contains('active');
-            document.querySelectorAll('.reveal-section').forEach(s => s.classList.remove('active'));
-            if (!isActive) {
-                section.classList.add('active');
-                setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
-            }
+        function toggleSidebar(state) {
+            const sidebar = document.getElementById('sidebar');
+            if(state === undefined) sidebar.classList.toggle('-translate-x-full');
+            else if(state) sidebar.classList.remove('-translate-x-full');
+            else sidebar.classList.add('-translate-x-full');
         }
+
+        // Render Videos
+        const grid = document.getElementById('video-grid');
+        videos.forEach((id, idx) => {
+            const div = document.createElement('div');
+            div.className = "group glass rounded-2xl overflow-hidden cursor-pointer hover:border-emerald-500 transition-all animate-in slide-in-from-bottom duration-500 shadow-lg";
+            div.onclick = () => openVideo(id);
+            div.innerHTML = `
+                <div class="aspect-video relative overflow-hidden">
+                    <img src="https://img.youtube.com/vi/${id}/mqdefault.jpg" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all scale-105 group-hover:scale-100">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/20">
+                        <div class="bg-emerald-500 p-4 rounded-full shadow-2xl"><i data-lucide="play" fill="white"></i></div>
+                    </div>
+                    <div class="absolute top-3 left-3 px-3 py-1 bg-black/80 border border-white/10 rounded-lg text-[10px] font-black uppercase text-white tracking-widest">Modul ${idx+1}</div>
+                </div>
+            `;
+            grid.appendChild(div);
+        });
+        lucide.createIcons(); // Refresh icons for new elements
+
+        // Video Player
+        function openVideo(id) {
+            const modal = document.getElementById('videoModal');
+            const player = document.getElementById('videoPlayer');
+            player.src = `https://www.youtube.com/embed/${id}?autoplay=1&modestbranding=1&rel=0`;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            document.getElementById('videoPlayer').src = '';
+            modal.classList.add('hidden');
+        }
+
+        // Calculator Logic
+        function setCalcMode(mode) {
+            currentMode = mode;
+            document.getElementById('btn-buy').className = mode === 'BUY' ? 'flex-1 py-2.5 rounded-lg text-xs font-bold active-tab' : 'flex-1 py-2.5 rounded-lg text-xs font-bold text-slate-500';
+            document.getElementById('btn-sell').className = mode === 'SELL' ? 'flex-1 py-2.5 rounded-lg text-xs font-bold active-tab' : 'flex-1 py-2.5 rounded-lg text-xs font-bold text-slate-500';
+            calculate();
+        }
+
+        function calculate() {
+            const balance = parseFloat(document.getElementById('balance').value) || 0;
+            const riskP = parseFloat(document.getElementById('riskPercent').value) || 0;
+            const entry = parseFloat(document.getElementById('entryPrice').value) || 0;
+            const sl = parseFloat(document.getElementById('slPrice').value) || 0;
+            const tp = parseFloat(document.getElementById('tpPrice').value) || 0;
+
+            let slDiff = currentMode === 'BUY' ? (entry - sl) : (sl - entry);
+            let tpDiff = currentMode === 'BUY' ? (tp - entry) : (entry - tp);
+            
+            const slPips = slDiff * 10;
+            const riskUSD = (balance * riskP) / 100;
+            
+            let lot = slPips > 0 ? (riskUSD / (slPips * 10)) : 0;
+            lot = Math.max(0, Math.floor(lot * 100) / 100);
+            
+            const actualLoss = slPips > 0 ? (slPips * lot * 10) : 0;
+            const actualProfit = tpDiff > 0 ? (tpDiff * 10 * lot * 10) : 0;
+            const rr = slPips > 0 && tpDiff > 0 ? (tpDiff / slDiff).toFixed(1) : "0.0";
+
+            document.getElementById('result-lot').textContent = lot.toFixed(2);
+            document.getElementById('result-risk').textContent = `-$${actualLoss.toFixed(2)}`;
+            document.getElementById('result-reward').textContent = `+$${actualProfit.toFixed(2)}`;
+            document.getElementById('result-rr').textContent = `Ratio 1:${rr}`;
+        }
+        
+        calculate(); // Initial calc
     </script>
 </body>
 </html>
+
