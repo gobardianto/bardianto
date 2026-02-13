@@ -9,7 +9,14 @@
     <meta name="description" content="Profil resmi Bagus Ardianto Adi Saputro. Hubungi langsung untuk kolaborasi profesional dan dukungan proyek kreatif.">
     <meta name="keywords" content="Bagus Ardianto, Bagus Ardianto Adi Saputro, Ardianto Adi, Profesional Indonesia, Portofolio Bagus Ardianto">
     
-    <!-- JSON-LD: Schema Org (Penting untuk Google Search Console) -->
+    <!-- Favicon & Social Image -->
+    <link rel="icon" type="image/png" href="icon-1.png">
+    <link rel="apple-touch-icon" href="icon-1.png">
+    <meta property="og:image" content="icon-1.png">
+    <meta property="og:title" content="Bagus Ardianto Adi Saputro">
+    <meta property="og:description" content="Profil profesional dan hub kolaborasi kreatif Bagus Ardianto.">
+
+    <!-- JSON-LD: Schema Org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -17,6 +24,7 @@
       "name": "Bagus Ardianto Adi Saputro",
       "alternateName": "Bagus Ardianto",
       "url": "https://bardianto.com",
+      "image": "icon-1.png",
       "jobTitle": "Professional Specialist",
       "sameAs": [
         "https://instagram.com/bagusardianto",
@@ -31,16 +39,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    
     <style>
         body { background-color: #000; font-family: 'JetBrains Mono', monospace; margin: 0; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
         .pixel-border { border: 3px solid currentColor; box-shadow: 6px 6px 0px 0px currentColor; }
-        .pixel-border:active { transform: translate(3px, 3px); box-shadow: 0px 0px 0px 0px currentColor; }
+        .pixel-border:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px 0px currentColor; }
         .pixel-border-indigo { border: 3px solid #6366f1; box-shadow: 6px 6px 0px 0px #6366f1; }
-        .pixel-border-indigo:active { transform: translate(3px, 3px); box-shadow: 0px 0px 0px 0px #6366f1; }
         .loading-spin { width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.2); border-top-color: currentColor; border-radius: 50%; animation: spin 0.8s linear infinite; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9)); z-index: -1; }
         .hidden-admin-trigger { position: fixed; bottom: 0; left: 0; width: 60px; height: 60px; opacity: 0; cursor: default; z-index: 100; }
+        
+        /* Smooth Scrollbar for Admin */
+        .admin-scroll::-webkit-scrollbar { width: 4px; }
+        .admin-scroll::-webkit-scrollbar-track { background: transparent; }
+        .admin-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -60,12 +73,11 @@
             Youtube: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>,
             Tiktok: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>,
             Linkedin: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>,
-            Facebook: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>,
-            Whatsapp: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L21 3z"></path></svg>,
             Donate: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path></svg>,
-            Trash: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>,
+            Trash: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>,
             Upload: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>,
-            Global: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Global: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>,
+            Check: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
         };
 
         const getIconByUrl = (url) => {
@@ -76,8 +88,7 @@
             if (l.includes('youtube.com') || l.includes('youtu.be')) return <Icons.Youtube />;
             if (l.includes('tiktok.com')) return <Icons.Tiktok />;
             if (l.includes('linkedin.com')) return <Icons.Linkedin />;
-            if (l.includes('facebook.com') || l.includes('fb.com')) return <Icons.Facebook />;
-            if (l.includes('wa.me') || l.includes('whatsapp.com')) return <Icons.Whatsapp />;
+            if (l.includes('wa.me') || l.includes('whatsapp.com')) return <Icons.Global />;
             return <Icons.Global />;
         };
 
@@ -108,7 +119,8 @@
                 const { data: prof } = await supabaseClient.from('profiles').select('*').limit(1).single();
                 if (prof) {
                     setProfile(prof);
-                    const { data: lnks } = await supabaseClient.from('links').select('*').eq('user_id', prof.id);
+                    // Order by created_at DESC agar link terbaru di atas
+                    const { data: lnks } = await supabaseClient.from('links').select('*').eq('user_id', prof.id).order('created_at', { ascending: false });
                     setLinks(lnks || []);
                 }
                 setLoading(false);
@@ -144,41 +156,57 @@
                 setSaveStatus('saving');
                 const { error } = await supabaseClient.from('profiles').upsert({ id: user.id, ...profile });
                 if (error) { alert(error.message); setSaveStatus(null); } 
-                else { setSaveStatus('success'); setTimeout(() => setSaveStatus(null), 2000); }
+                else { 
+                    setSaveStatus('success'); 
+                    setTimeout(() => setSaveStatus(null), 3000); 
+                }
             };
 
-            if (loading && view === 'home') return <div className="h-screen flex items-center justify-center bg-black text-white font-bold tracking-widest italic">SABAR YA...</div>;
+            const addNewLink = async () => {
+                const { data, error } = await supabaseClient.from('links').insert({ 
+                    user_id: user.id, 
+                    title: 'LINK_BARU', 
+                    url: 'https://', 
+                    type: 'square' 
+                }).select().single();
+                
+                if (data) {
+                    // Masukkan ke array links di posisi index 0 (paling atas)
+                    setLinks([data, ...links]);
+                }
+            };
+
+            if (loading && view === 'home') return <div className="h-screen flex items-center justify-center bg-black text-white font-bold tracking-widest italic animate-pulse">SABAR_YA...</div>;
 
             const dynamicStyle = { color: profile.text_color || '#ffffff' };
 
             return (
                 <div className="min-h-screen" style={dynamicStyle}>
-                    {/* ELEMEN SEO TERSEMBUNYI (Standard Accessability) */}
+                    {/* SEO TERSEMBUNYI */}
                     <div className="sr-only">
                         <h1>Bagus Ardianto Adi Saputro</h1>
-                        <h2>Profil Resmi Bagus Ardianto</h2>
-                        <p>Halaman ini berisi informasi profesional dan cara menghubungi Bagus Ardianto Adi Saputro secara langsung.</p>
+                        <p>Profil resmi Bagus Ardianto Adi Saputro - Professional Portfolio.</p>
                     </div>
 
                     {view === 'home' && (
                         <div className="max-w-md mx-auto pt-24 px-8 pb-32 flex flex-col items-center">
                             {profile.bg_url && (
                                 <>
-                                    <img src={profile.bg_url} className="fixed inset-0 w-full h-full object-cover -z-20 grayscale-[0.3]" alt="Background Bagus Ardianto" />
+                                    <img src={profile.bg_url} className="fixed inset-0 w-full h-full object-cover -z-20 grayscale-[0.3]" alt="Background" />
                                     <div className="bg-overlay" />
                                 </>
                             )}
                             
                             <div className="w-32 h-32 border-4 mb-8 bg-zinc-900 overflow-hidden pixel-border" style={{borderColor: profile.text_color}}>
                                 {profile.avatar_url ? (
-                                    <img src={profile.avatar_url} className="w-full h-full object-cover" alt="Avatar Bagus Ardianto" />
+                                    <img src={profile.avatar_url} className="w-full h-full object-cover" alt="Avatar" />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center opacity-30 italic text-[10px]">BAGUS_ARDIANTO</div>
+                                    <div className="w-full h-full flex items-center justify-center opacity-30 italic text-[10px]">NO_IMAGE</div>
                                 )}
                             </div>
 
-                            <h2 className="text-2xl font-black uppercase tracking-tighter mb-2 text-center">{profile.name || "Bagus Ardianto Adi Saputro"}</h2>
-                            <p className="text-[10px] mb-12 text-center uppercase tracking-[0.4em] font-bold opacity-70 italic">{profile.bio || "Professional Hub"}</p>
+                            <h2 className="text-2xl font-black uppercase tracking-tighter mb-2 text-center">{profile.name}</h2>
+                            <p className="text-[10px] mb-12 text-center uppercase tracking-[0.4em] font-bold opacity-70 italic">{profile.bio}</p>
 
                             <div className="flex flex-wrap justify-center gap-5 mb-12">
                                 {links.filter(l => l.type === 'social').map(l => (
@@ -188,125 +216,146 @@
                                 ))}
                             </div>
 
-                            <div className="grid grid-cols-2 gap-6 w-full mb-12">
+                            <div className="grid grid-cols-2 gap-4 w-full mb-12">
                                 {links.filter(l => l.type === 'square').map(l => (
-                                    <a key={l.id} href={l.url} target="_blank" className="aspect-square bg-black/40 backdrop-blur-md p-6 flex flex-col justify-between pixel-border group">
+                                    <a key={l.id} href={l.url} target="_blank" className="aspect-square bg-black/40 backdrop-blur-md p-5 flex flex-col justify-between pixel-border group">
                                         <div className="flex justify-end opacity-30 group-hover:opacity-100 transition-opacity">{getIconByUrl(l.url)}</div>
-                                        <span className="text-[11px] font-black uppercase tracking-widest leading-tight">{l.title}</span>
+                                        <span className="text-[10px] font-black uppercase tracking-widest leading-tight">{l.title}</span>
                                     </a>
                                 ))}
                             </div>
 
                             <button onClick={() => setShowDonateModal(true)} className="w-full py-5 bg-indigo-600 pixel-border-indigo flex items-center justify-center gap-4 font-black text-sm uppercase text-white mb-16">
-                                <Icons.Donate /> SUPPORT BAGUS
+                                <Icons.Donate /> SUPPORT PROJECT
                             </button>
 
                             <div className="hidden-admin-trigger" onClick={() => setView('login')}></div>
                         </div>
                     )}
 
-                    {showDonateModal && (
-                        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 backdrop-blur-lg">
-                            <div className="w-full max-w-xs pixel-border bg-zinc-900 p-8 text-white">
-                                <h3 className="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Support Project</h3>
-                                <div className="grid grid-cols-2 gap-3 mb-8">
-                                    {[10000, 25000, 50000, 100000].map(amt => (
-                                        <button key={amt} onClick={() => setDonateAmount(amt)} className={`p-3 border-2 font-black text-xs ${donateAmount === amt ? 'bg-white text-black border-white' : 'border-zinc-800 text-zinc-400'}`}>
-                                            {amt.toLocaleString()}
-                                        </button>
-                                    ))}
-                                </div>
-                                <button onClick={() => setShowDonateModal(false)} className="w-full py-5 bg-indigo-600 text-white font-black uppercase text-xs pixel-border-indigo mb-4">DONATE_NOW</button>
-                                <button onClick={() => setShowDonateModal(false)} className="w-full text-[10px] font-bold text-zinc-500 uppercase">CLOSE</button>
-                            </div>
-                        </div>
-                    )}
-
                     {view === 'login' && (
-                        <div className="h-screen flex items-center justify-center px-6 bg-black text-white">
-                            <form onSubmit={handleLogin} className="w-full max-w-xs pixel-border p-10 bg-zinc-900 space-y-6">
+                        <div className="h-screen flex items-center justify-center px-6 bg-black">
+                            <form onSubmit={handleLogin} className="w-full max-w-xs pixel-border p-10 bg-zinc-900 space-y-6 text-white">
                                 <h2 className="text-xl font-black uppercase italic border-b-2 border-white pb-3 tracking-tighter">Admin Auth</h2>
                                 <input name="email" type="email" placeholder="EMAIL" className="w-full bg-black border-2 border-zinc-800 p-4 text-xs outline-none focus:border-white" required />
                                 <input name="password" type="password" placeholder="PASSWORD" className="w-full bg-black border-2 border-zinc-800 p-4 text-xs outline-none focus:border-white" required />
                                 <button className="w-full py-4 bg-white text-black font-black uppercase text-xs">LOG_IN</button>
-                                <button type="button" onClick={() => setView('home')} className="w-full text-[10px] font-bold opacity-40 uppercase">BACK</button>
+                                <button type="button" onClick={() => setView('home')} className="w-full text-[10px] font-bold opacity-40 uppercase tracking-widest">BACK_HOME</button>
                             </form>
                         </div>
                     )}
 
                     {view === 'admin' && (
-                        <div className="max-w-5xl mx-auto py-16 px-6 bg-black text-white">
-                            <div className="flex justify-between items-end mb-16 border-b-4 border-white pb-8">
-                                <h1 className="text-3xl font-black uppercase italic tracking-tighter">DASHBOARD_BAGUS</h1>
-                                <div className="flex gap-4">
-                                    <button onClick={() => setView('home')} className="px-6 py-2 border-2 border-white font-black text-xs uppercase">Preview</button>
-                                    <button onClick={() => { supabaseClient.auth.signOut(); setView('home'); }} className="px-6 py-2 bg-red-600 font-black text-xs uppercase">Logout</button>
+                        <div className="min-h-screen bg-black text-white flex flex-col">
+                            {/* Header Fixed */}
+                            <div className="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b-4 border-white p-6 md:px-12 flex justify-between items-center">
+                                <h1 className="text-xl md:text-2xl font-black uppercase italic tracking-tighter">ADMIN_PANEL</h1>
+                                <div className="flex gap-3">
+                                    <button onClick={() => setView('home')} className="px-4 py-2 border-2 border-white font-black text-[10px] uppercase">Preview</button>
+                                    <button onClick={() => { supabaseClient.auth.signOut(); setView('home'); }} className="px-4 py-2 bg-red-600 font-black text-[10px] uppercase">Exit</button>
                                 </div>
                             </div>
 
-                            <div className="grid lg:grid-cols-2 gap-20">
-                                <div className="space-y-12">
-                                    <div className="space-y-6">
-                                        <h3 className="text-xs font-black uppercase tracking-widest text-zinc-500 border-l-4 border-indigo-600 pl-4">Aset Media</h3>
-                                        <div className="grid grid-cols-2 gap-6">
-                                            <div className="space-y-3">
-                                                <div className="aspect-square border-2 border-zinc-800 bg-zinc-900 overflow-hidden relative">
-                                                    {profile.avatar_url && <img src={profile.avatar_url} className="w-full h-full object-cover" />}
-                                                    {uploading === 'avatar' && <div className="absolute inset-0 bg-black/80 flex items-center justify-center"><div className="loading-spin"></div></div>}
+                            <div className="flex-1 overflow-y-auto admin-scroll p-6 md:p-12 pb-40">
+                                <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-20">
+                                    
+                                    {/* Kolom Kiri: Profil */}
+                                    <div className="space-y-10">
+                                        <section>
+                                            <h3 className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-6 border-l-4 border-indigo-500 pl-3">ASET_VISUAL</h3>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div className="space-y-3">
+                                                    <div className="aspect-square border-2 border-zinc-800 bg-zinc-900 overflow-hidden relative">
+                                                        {profile.avatar_url && <img src={profile.avatar_url} className="w-full h-full object-cover" />}
+                                                        {uploading === 'avatar' && <div className="absolute inset-0 bg-black/80 flex items-center justify-center"><div className="loading-spin"></div></div>}
+                                                    </div>
+                                                    <label className="flex items-center justify-center gap-2 w-full py-2 bg-white text-black font-black text-[9px] cursor-pointer">
+                                                        <Icons.Upload /> AVATAR
+                                                        <input type="file" className="hidden" onChange={(e) => handleFileChange(e, 'avatar')} />
+                                                    </label>
                                                 </div>
-                                                <label className="flex items-center justify-center gap-3 w-full py-3 bg-white text-black font-black text-[10px] cursor-pointer">
-                                                    <Icons.Upload /> AVATAR
-                                                    <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'avatar')} />
-                                                </label>
-                                            </div>
-                                            <div className="space-y-3">
-                                                <div className="aspect-square border-2 border-zinc-800 bg-zinc-900 overflow-hidden relative">
-                                                    {profile.bg_url && <img src={profile.bg_url} className="w-full h-full object-cover" />}
-                                                    {uploading === 'bg' && <div className="absolute inset-0 bg-black/80 flex items-center justify-center"><div className="loading-spin"></div></div>}
+                                                <div className="space-y-3">
+                                                    <div className="aspect-square border-2 border-zinc-800 bg-zinc-900 overflow-hidden relative">
+                                                        {profile.bg_url && <img src={profile.bg_url} className="w-full h-full object-cover" />}
+                                                        {uploading === 'bg' && <div className="absolute inset-0 bg-black/80 flex items-center justify-center"><div className="loading-spin"></div></div>}
+                                                    </div>
+                                                    <label className="flex items-center justify-center gap-2 w-full py-2 bg-zinc-800 text-white font-black text-[9px] cursor-pointer">
+                                                        <Icons.Upload /> BG_HERO
+                                                        <input type="file" className="hidden" onChange={(e) => handleFileChange(e, 'bg')} />
+                                                    </label>
                                                 </div>
-                                                <label className="flex items-center justify-center gap-3 w-full py-3 bg-zinc-800 text-white font-black text-[10px] cursor-pointer">
-                                                    <Icons.Upload /> BG
-                                                    <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'bg')} />
-                                                </label>
                                             </div>
-                                        </div>
+                                        </section>
+
+                                        <section className="p-6 bg-zinc-900/50 border-2 border-zinc-800 space-y-6">
+                                            <h3 className="text-[10px] font-black uppercase tracking-widest text-zinc-500 border-l-4 border-indigo-500 pl-3">INFO_PROFIL</h3>
+                                            <div className="flex items-center gap-4">
+                                                <input type="color" value={profile.text_color} onChange={e => setProfile({...profile, text_color: e.target.value})} className="w-10 h-10 bg-transparent border-2 border-zinc-700 cursor-pointer" />
+                                                <span className="text-[10px] font-bold">Warna Teks & Border</span>
+                                            </div>
+                                            <input value={profile.name} onChange={e => setProfile({...profile, name: e.target.value})} placeholder="Nama" className="w-full bg-black border-2 border-zinc-800 p-3 text-xs font-bold" />
+                                            <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} placeholder="Bio" className="w-full bg-black border-2 border-zinc-800 p-3 text-xs h-20" />
+                                        </section>
                                     </div>
 
-                                    <div className="space-y-6">
-                                        <h3 className="text-xs font-black uppercase tracking-widest text-zinc-500 border-l-4 border-indigo-600 pl-4">Pengaturan Profil</h3>
-                                        <div className="p-6 bg-zinc-900 border-2 border-zinc-800 space-y-6">
-                                            <input type="color" value={profile.text_color} onChange={e => setProfile({...profile, text_color: e.target.value})} className="w-12 h-12 bg-transparent border-none cursor-pointer" />
-                                            <input value={profile.name} onChange={e => setProfile({...profile, name: e.target.value})} placeholder="Nama Lengkap" className="w-full bg-black border-2 border-zinc-800 p-4 text-sm font-bold outline-none" />
-                                            <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} placeholder="Bio Singkat" className="w-full bg-black border-2 border-zinc-800 p-4 text-sm outline-none h-24" />
-                                            <button onClick={saveProfile} className={`w-full py-5 font-black uppercase text-xs tracking-widest ${saveStatus === 'success' ? 'bg-green-600' : 'bg-indigo-600 pixel-border-indigo'}`}>
-                                                {saveStatus === 'saving' ? 'SAVING...' : (saveStatus === 'success' ? '✓_SINKRON' : 'UPDATE_DATA')}
-                                            </button>
+                                    {/* Kolom Kanan: Links */}
+                                    <div className="space-y-8">
+                                        <div className="flex justify-between items-center border-l-4 border-indigo-500 pl-3">
+                                            <h3 className="text-[10px] font-black uppercase tracking-widest text-zinc-500">MANAGEMENT_LINKS</h3>
+                                            <button onClick={addNewLink} className="bg-white text-black px-4 py-2 font-black text-[9px]">+ TAMBAH_DI_ATAS</button>
+                                        </div>
+                                        
+                                        <div className="space-y-4">
+                                            {links.map(l => (
+                                                <div key={l.id} className="p-5 border-2 border-zinc-800 bg-zinc-900/40 relative group transition-all hover:border-zinc-500">
+                                                    <button onClick={async () => { await supabaseClient.from('links').delete().eq('id', l.id); setLinks(links.filter(it => it.id !== l.id)); }} className="absolute top-4 right-4 text-red-500 md:opacity-0 group-hover:opacity-100 p-2"><Icons.Trash /></button>
+                                                    <div className="flex gap-3 mb-3">
+                                                        <select value={l.type} onChange={async (e) => { const v = e.target.value; setLinks(links.map(it => it.id === l.id ? {...it, type: v} : it)); await supabaseClient.from('links').update({ type: v }).eq('id', l.id); }} className="bg-black text-[8px] font-black p-1 border border-zinc-700 outline-none">
+                                                            <option value="square">GRID_CARD</option>
+                                                            <option value="social">SOCIAL_ICON</option>
+                                                        </select>
+                                                    </div>
+                                                    <input value={l.title} onChange={e => { const v = e.target.value; setLinks(links.map(it => it.id === l.id ? {...it, title: v} : it)); supabaseClient.from('links').update({ title: v }).eq('id', l.id).then(); }} className="bg-transparent text-xs font-black block w-full outline-none border-b border-zinc-800 mb-2 py-1 uppercase" placeholder="JUDUL LINK" />
+                                                    <input value={l.url} onChange={e => { const v = e.target.value; setLinks(links.map(it => it.id === l.id ? {...it, url: v} : it)); supabaseClient.from('links').update({ url: v }).eq('id', l.id).then(); }} className="bg-transparent text-[9px] text-zinc-500 block w-full outline-none" placeholder="https://..." />
+                                                </div>
+                                            ))}
+                                            {links.length === 0 && <div className="text-center py-10 text-[10px] text-zinc-600 italic">BELUM_ADA_LINK_TERSEDIA</div>}
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div className="space-y-12">
-                                    <div className="flex justify-between items-center border-l-4 border-indigo-600 pl-4">
-                                        <h3 className="text-xs font-black uppercase tracking-widest text-zinc-500">Daftar Link</h3>
-                                        <button onClick={async () => {
-                                            const { data } = await supabaseClient.from('links').insert({ user_id: user.id, title: 'NEW_LINK', url: 'https://', type: 'square' }).select().single();
-                                            setLinks([...links, data]);
-                                        }} className="text-[10px] font-black border-2 border-white px-5 py-2">+ TAMBAH</button>
-                                    </div>
-                                    <div className="space-y-5 max-h-[600px] overflow-y-auto pr-4">
-                                        {links.map(l => (
-                                            <div key={l.id} className="p-6 border-2 border-zinc-800 bg-zinc-900/30 space-y-4 relative group">
-                                                <button onClick={async () => { await supabaseClient.from('links').delete().eq('id', l.id); setLinks(links.filter(it => it.id !== l.id)); }} className="absolute top-6 right-6 text-red-500 opacity-0 group-hover:opacity-100"><Icons.Trash /></button>
-                                                <select value={l.type} onChange={async (e) => { const v = e.target.value; setLinks(links.map(it => it.id === l.id ? {...it, type: v} : it)); await supabaseClient.from('links').update({ type: v }).eq('id', l.id); }} className="bg-black text-[9px] font-black p-2 border border-zinc-700">
-                                                    <option value="social">SOCIAL_ICON</option>
-                                                    <option value="square">GRID_CARD</option>
-                                                </select>
-                                                <input value={l.title} onChange={e => { const v = e.target.value; setLinks(links.map(it => it.id === l.id ? {...it, title: v} : it)); supabaseClient.from('links').update({ title: v }).eq('id', l.id).then(); }} className="bg-transparent text-sm font-black block w-full outline-none border-b border-zinc-800 py-1" />
-                                                <input value={l.url} onChange={e => { const v = e.target.value; setLinks(links.map(it => it.id === l.id ? {...it, url: v} : it)); supabaseClient.from('links').update({ url: v }).eq('id', l.id).then(); }} className="bg-transparent text-[10px] text-zinc-500 block w-full outline-none" />
-                                            </div>
-                                        ))}
-                                    </div>
+                            {/* Floating Save Confirmation (Bottom) */}
+                            <div className="fixed bottom-0 left-0 right-0 p-6 z-50 flex justify-center pointer-events-none">
+                                <div className="w-full max-w-md pointer-events-auto">
+                                    {saveStatus === 'success' ? (
+                                        <div className="w-full bg-green-600 text-white p-4 flex items-center justify-center gap-3 font-black text-xs pixel-border-indigo shadow-2xl animate-bounce">
+                                            <Icons.Check /> DATA_BERHASIL_DISIMPAN
+                                        </div>
+                                    ) : (
+                                        <button onClick={saveProfile} className="w-full bg-indigo-600 text-white p-5 flex items-center justify-center gap-4 font-black text-xs uppercase pixel-border-indigo shadow-2xl">
+                                            {saveStatus === 'saving' ? 'PROSES_SINKRON...' : 'KONFIRMASI_UPDATE_PROFIL'}
+                                        </button>
+                                    )}
                                 </div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    {/* MODAL DONATE */}
+                    {showDonateModal && (
+                        <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 backdrop-blur-md">
+                            <div className="w-full max-w-xs pixel-border bg-zinc-900 p-8 text-white">
+                                <h3 className="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Support Bagus</h3>
+                                <div className="grid grid-cols-2 gap-3 mb-8">
+                                    {[10000, 25000, 50000, 100000].map(amt => (
+                                        <button key={amt} onClick={() => setDonateAmount(amt)} className={`p-3 border-2 font-black text-[10px] ${donateAmount === amt ? 'bg-white text-black' : 'border-zinc-800 text-zinc-500'}`}>
+                                            {amt.toLocaleString()}
+                                        </button>
+                                    ))}
+                                </div>
+                                <button onClick={() => setShowDonateModal(false)} className="w-full py-4 bg-indigo-600 text-white font-black uppercase text-xs pixel-border-indigo mb-4 italic">KIRIM_DUKUNGAN</button>
+                                <button onClick={() => setShowDonateModal(false)} className="w-full text-[9px] font-bold text-zinc-500 uppercase">BATAL</button>
                             </div>
                         </div>
                     )}
