@@ -48,13 +48,27 @@
             z-index: -1;
         }
 
-        /* Modal Overlay */
         .modal-enter {
             animation: modalFade 0.2s ease-out;
         }
         @keyframes modalFade {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Hidden Login Trigger */
+        .hidden-admin-trigger {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+            cursor: default;
+            z-index: 100;
+        }
+        .hidden-admin-trigger:hover {
+            opacity: 0.05;
         }
     </style>
 </head>
@@ -72,6 +86,11 @@
             Instagram: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>,
             Github: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>,
             X: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4l-6.768 6.768"></path></svg>,
+            Youtube: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg>,
+            Tiktok: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>,
+            Linkedin: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>,
+            Facebook: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>,
+            Whatsapp: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L21 3z"></path></svg>,
             Donate: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path></svg>,
             Trash: () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>,
             Upload: () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>,
@@ -80,9 +99,14 @@
 
         const getIconByUrl = (url) => {
             const l = url.toLowerCase();
-            if (l.includes('instagram')) return <Icons.Instagram />;
-            if (l.includes('github')) return <Icons.Github />;
-            if (l.includes('twitter') || l.includes('x.com')) return <Icons.X />;
+            if (l.includes('instagram.com')) return <Icons.Instagram />;
+            if (l.includes('github.com')) return <Icons.Github />;
+            if (l.includes('twitter.com') || l.includes('x.com')) return <Icons.X />;
+            if (l.includes('youtube.com') || l.includes('youtu.be')) return <Icons.Youtube />;
+            if (l.includes('tiktok.com')) return <Icons.Tiktok />;
+            if (l.includes('linkedin.com')) return <Icons.Linkedin />;
+            if (l.includes('facebook.com') || l.includes('fb.com')) return <Icons.Facebook />;
+            if (l.includes('wa.me') || l.includes('whatsapp.com')) return <Icons.Whatsapp />;
             return <Icons.Global />;
         };
 
@@ -97,7 +121,6 @@
             const [uploading, setUploading] = useState(null);
             const [saveStatus, setSaveStatus] = useState(null);
 
-            // Donation State
             const [showDonateModal, setShowDonateModal] = useState(false);
             const [donateAmount, setDonateAmount] = useState(10000);
 
@@ -170,11 +193,11 @@
             };
 
             const handleDuitkuDonate = () => {
-                alert(`Menghubungkan ke Duitku Gateway...\nNominal: Rp ${donateAmount.toLocaleString()}\nFitur integrasi penuh (Upcoming).`);
+                alert(`Duitku Gateway (Upcoming).\nNominal: Rp ${donateAmount.toLocaleString()}`);
                 setShowDonateModal(false);
             };
 
-            if (loading && view === 'home') return <div className="h-screen flex items-center justify-center bg-black text-white font-bold tracking-widest">MEMUAT_PANGGILAN...</div>;
+            if (loading && view === 'home') return <div className="h-screen flex items-center justify-center bg-black text-white font-bold tracking-widest italic">PIXEL_INITIALIZING...</div>;
 
             const dynamicStyle = { color: profile.text_color || '#ffffff' };
 
@@ -201,7 +224,6 @@
                             <h1 className="text-3xl font-black uppercase tracking-tighter mb-2 text-center">{profile.name || "BARDIANTO"}</h1>
                             <p className="text-xs mb-12 text-center uppercase tracking-[0.4em] font-bold opacity-70">{profile.bio || "CREATIVE DIRECTOR"}</p>
 
-                            {/* Social Links */}
                             <div className="flex flex-wrap justify-center gap-5 mb-12">
                                 {links.filter(l => l.type === 'social').map(l => (
                                     <a key={l.id} href={l.url} target="_blank" className="w-14 h-14 bg-black/40 backdrop-blur-md flex items-center justify-center pixel-border hover:bg-white hover:text-black transition-all">
@@ -210,17 +232,15 @@
                                 ))}
                             </div>
 
-                            {/* Square Links */}
                             <div className="grid grid-cols-2 gap-6 w-full mb-12">
                                 {links.filter(l => l.type === 'square').map(l => (
                                     <a key={l.id} href={l.url} target="_blank" className="aspect-square bg-black/40 backdrop-blur-md p-6 flex flex-col justify-between pixel-border group">
                                         <div className="flex justify-end opacity-30 group-hover:opacity-100 transition-opacity">{getIconByUrl(l.url)}</div>
-                                        <span className="text-[11px] font-black uppercase tracking-widest">{l.title}</span>
+                                        <span className="text-[11px] font-black uppercase tracking-widest leading-tight">{l.title}</span>
                                     </a>
                                 ))}
                             </div>
 
-                            {/* Support Me Button */}
                             <button 
                                 onClick={() => setShowDonateModal(true)}
                                 className="w-full py-5 bg-indigo-600 pixel-border-indigo flex items-center justify-center gap-4 font-black text-sm uppercase text-white mb-16"
@@ -228,7 +248,8 @@
                                 <Icons.Donate /> SUPPORT ME
                             </button>
 
-                            <button onClick={() => setView('login')} className="text-[9px] font-black opacity-30 hover:opacity-100 tracking-[0.3em]">PIXEL_CORE_ACCESS</button>
+                            {/* Hidden Access Trigger */}
+                            <div className="hidden-admin-trigger" onClick={() => setView('login')}></div>
                         </div>
                     )}
 
@@ -236,14 +257,14 @@
                     {showDonateModal && (
                         <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-6 backdrop-blur-lg">
                             <div className="w-full max-w-xs pixel-border bg-zinc-900 p-8 modal-enter text-white">
-                                <h3 className="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Support Project</h3>
+                                <h3 className="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter text-white">Support Project</h3>
                                 <p className="text-[10px] text-zinc-500 font-bold uppercase mb-4">Pilih Nominal (Rp)</p>
                                 <div className="grid grid-cols-2 gap-3 mb-8">
                                     {[10000, 25000, 50000, 100000].map(amt => (
                                         <button 
                                             key={amt}
                                             onClick={() => setDonateAmount(amt)}
-                                            className={`p-3 border-2 font-black text-xs ${donateAmount === amt ? 'bg-white text-black border-white' : 'border-zinc-800 text-zinc-400'}`}
+                                            className={`p-3 border-2 font-black text-xs transition-colors ${donateAmount === amt ? 'bg-white text-black border-white' : 'border-zinc-800 text-zinc-400'}`}
                                         >
                                             {amt.toLocaleString()}
                                         </button>
@@ -253,7 +274,7 @@
                                     onClick={handleDuitkuDonate}
                                     className="w-full py-5 bg-indigo-600 text-white font-black uppercase text-xs pixel-border-indigo mb-4"
                                 >
-                                    PAY_WITH_DUITKU
+                                    PAYMENT
                                 </button>
                                 <button onClick={() => setShowDonateModal(false)} className="w-full text-[10px] font-bold text-zinc-500 hover:text-white uppercase tracking-widest">Batal</button>
                             </div>
@@ -264,7 +285,7 @@
                     {view === 'login' && (
                         <div className="h-screen flex items-center justify-center px-6 bg-black text-white">
                             <form onSubmit={handleLogin} className="w-full max-w-xs pixel-border p-10 bg-zinc-900 space-y-6">
-                                <h2 className="text-xl font-black uppercase italic border-b-2 border-white pb-3 tracking-tighter">Admin Panel</h2>
+                                <h2 className="text-xl font-black uppercase italic border-b-2 border-white pb-3 tracking-tighter">Admin Access</h2>
                                 <input name="email" type="email" placeholder="EMAIL" className="w-full bg-black border-2 border-zinc-800 p-4 text-xs outline-none focus:border-white" required />
                                 <input name="password" type="password" placeholder="PASSWORD" className="w-full bg-black border-2 border-zinc-800 p-4 text-xs outline-none focus:border-white" required />
                                 <button className="w-full py-4 bg-white text-black font-black uppercase text-xs">Akses Masuk</button>
@@ -279,16 +300,15 @@
                             <div className="flex justify-between items-end mb-16 border-b-4 border-white pb-8">
                                 <div>
                                     <h1 className="text-3xl font-black italic tracking-tighter uppercase">PIXEL_DASHBOARD</h1>
-                                    <p className="text-[10px] text-zinc-500 font-bold mt-2">CONNECTED_SECURELY</p>
+                                    <p className="text-[10px] text-zinc-500 font-bold mt-2 tracking-widest">ENCRYPTED_SESSION</p>
                                 </div>
                                 <div className="flex gap-4">
-                                    <button onClick={() => setView('home')} className="px-6 py-2 border-2 border-white font-black text-xs hover:bg-white hover:text-black">PREVIEW</button>
-                                    <button onClick={() => { supabaseClient.auth.signOut(); setView('home'); }} className="px-6 py-2 bg-red-600 font-black text-xs uppercase">Logout</button>
+                                    <button onClick={() => setView('home')} className="px-6 py-2 border-2 border-white font-black text-xs hover:bg-white hover:text-black transition-colors uppercase">Preview</button>
+                                    <button onClick={() => { supabaseClient.auth.signOut(); setView('home'); }} className="px-6 py-2 bg-red-600 font-black text-xs uppercase transition-opacity hover:opacity-80">Logout</button>
                                 </div>
                             </div>
 
                             <div className="grid lg:grid-cols-2 gap-20">
-                                {/* Profil & Media */}
                                 <div className="space-y-12">
                                     <div className="space-y-6">
                                         <h3 className="text-xs font-black uppercase tracking-widest text-zinc-500 border-l-4 border-indigo-600 pl-4">Media Galeri</h3>
@@ -298,7 +318,7 @@
                                                     {profile.avatar_url && <img src={profile.avatar_url} className="w-full h-full object-cover" />}
                                                     {uploading === 'avatar' && <div className="absolute inset-0 bg-black/80 flex items-center justify-center"><div className="loading-spin"></div></div>}
                                                 </div>
-                                                <label className="flex items-center justify-center gap-3 w-full py-3 bg-white text-black font-black text-[10px] cursor-pointer hover:bg-zinc-200">
+                                                <label className="flex items-center justify-center gap-3 w-full py-3 bg-white text-black font-black text-[10px] cursor-pointer hover:bg-zinc-200 transition-colors">
                                                     <Icons.Upload /> UPLOAD_AVATAR
                                                     <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'avatar')} />
                                                 </label>
@@ -308,7 +328,7 @@
                                                     {profile.bg_url && <img src={profile.bg_url} className="w-full h-full object-cover" />}
                                                     {uploading === 'bg' && <div className="absolute inset-0 bg-black/80 flex items-center justify-center"><div className="loading-spin"></div></div>}
                                                 </div>
-                                                <label className="flex items-center justify-center gap-3 w-full py-3 bg-zinc-800 text-white font-black text-[10px] cursor-pointer hover:bg-zinc-700">
+                                                <label className="flex items-center justify-center gap-3 w-full py-3 bg-zinc-800 text-white font-black text-[10px] cursor-pointer hover:bg-zinc-700 transition-colors">
                                                     <Icons.Upload /> UPLOAD_BG
                                                     <input type="file" accept="image/*" className="hidden" onChange={(e) => handleFileChange(e, 'bg')} />
                                                 </label>
@@ -317,7 +337,7 @@
                                     </div>
 
                                     <div className="space-y-6">
-                                        <h3 className="text-xs font-black uppercase tracking-widest text-zinc-500 border-l-4 border-indigo-600 pl-4">Identitas & Warna</h3>
+                                        <h3 className="text-xs font-black uppercase tracking-widest text-zinc-500 border-l-4 border-indigo-600 pl-4">Visual & Branding</h3>
                                         <div className="p-6 bg-zinc-900 border-2 border-zinc-800 space-y-6">
                                             <div className="flex items-center gap-5">
                                                 <input 
@@ -327,38 +347,37 @@
                                                     className="w-12 h-12 bg-transparent border-none cursor-pointer"
                                                 />
                                                 <div>
-                                                    <p className="text-[10px] font-black uppercase">Warna Teks & Border</p>
-                                                    <p className="text-[9px] text-zinc-500 italic">Klik kotak untuk mengganti warna global</p>
+                                                    <p className="text-[10px] font-black uppercase">Warna Aksen Global</p>
+                                                    <p className="text-[9px] text-zinc-500 italic">Sesuaikan dengan mood background kamu</p>
                                                 </div>
                                             </div>
                                             <div className="space-y-4">
-                                                <input value={profile.name} onChange={e => setProfile({...profile, name: e.target.value})} placeholder="Nama Kamu" className="w-full bg-black border-2 border-zinc-800 p-4 text-sm font-bold outline-none focus:border-white" />
-                                                <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} placeholder="Bio/Slogan" className="w-full bg-black border-2 border-zinc-800 p-4 text-sm outline-none focus:border-white h-24" />
+                                                <input value={profile.name} onChange={e => setProfile({...profile, name: e.target.value})} placeholder="Display Name" className="w-full bg-black border-2 border-zinc-800 p-4 text-sm font-bold outline-none focus:border-white" />
+                                                <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} placeholder="Slogan / Bio" className="w-full bg-black border-2 border-zinc-800 p-4 text-sm outline-none focus:border-white h-24" />
                                             </div>
                                             <button 
                                                 onClick={saveProfile} 
-                                                className={`w-full py-5 font-black uppercase text-xs tracking-widest flex items-center justify-center gap-3 transition-all ${saveStatus === 'success' ? 'bg-green-600 border-green-600' : 'bg-indigo-600 pixel-border-indigo'}`}
+                                                className={`w-full py-5 font-black uppercase text-xs tracking-widest flex items-center justify-center gap-3 transition-all ${saveStatus === 'success' ? 'bg-green-600' : 'bg-indigo-600 pixel-border-indigo'}`}
                                             >
-                                                {saveStatus === 'saving' ? <div className="loading-spin"></div> : (saveStatus === 'success' ? '✓_DATA_TERSIPAN' : 'KONFIRMASI_UPDATE')}
+                                                {saveStatus === 'saving' ? <div className="loading-spin"></div> : (saveStatus === 'success' ? '✓_DATA_TERSIPAN' : 'SIMPAN_KONFIGURASI')}
                                             </button>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Link Editor */}
                                 <div className="space-y-12">
                                     <div className="flex justify-between items-center border-l-4 border-indigo-600 pl-4">
                                         <h3 className="text-xs font-black uppercase tracking-widest text-zinc-500">Direktori Link</h3>
                                         <button 
                                             onClick={async () => {
-                                                const { data } = await supabaseClient.from('links').insert({ user_id: user.id, title: 'JUDUL_BARU', url: 'https://', type: 'square' }).select().single();
+                                                const { data } = await supabaseClient.from('links').insert({ user_id: user.id, title: 'NEW_ITEM', url: 'https://', type: 'square' }).select().single();
                                                 setLinks([...links, data]);
                                             }}
                                             className="text-[10px] font-black border-2 border-white px-5 py-2 hover:bg-white hover:text-black transition-colors"
-                                        >+ TAMBAH_ITEM</button>
+                                        >+ TAMBAH_LINK</button>
                                     </div>
 
-                                    <div className="space-y-5 max-h-[600px] overflow-y-auto pr-4">
+                                    <div className="space-y-5 max-h-[600px] overflow-y-auto pr-4 custom-scrollbar">
                                         {links.map(l => (
                                             <div key={l.id} className="p-6 border-2 border-zinc-800 bg-zinc-900/30 space-y-4 relative group hover:border-zinc-500 transition-colors">
                                                 <button onClick={async () => {
@@ -376,8 +395,8 @@
                                                         }}
                                                         className="bg-black text-[9px] font-black uppercase p-2 border border-zinc-700 outline-none cursor-pointer"
                                                     >
-                                                        <option value="social">SOCIAL_ROW</option>
-                                                        <option value="square">GRID_KOTAK</option>
+                                                        <option value="social">SOCIAL_BAR</option>
+                                                        <option value="square">GRID_CARD</option>
                                                     </select>
                                                     <span className="text-indigo-400">{getIconByUrl(l.url)}</span>
                                                 </div>
@@ -399,13 +418,14 @@
                                                             setLinks(links.map(it => it.id === l.id ? {...it, url: v} : it));
                                                             supabaseClient.from('links').update({ url: v }).eq('id', l.id).then();
                                                         }} 
+                                                        placeholder="https://platform.com/user"
                                                         className="bg-transparent text-[10px] text-zinc-500 block w-full outline-none font-bold" 
                                                     />
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
-                                    <p className="text-[9px] text-zinc-600 font-bold italic uppercase tracking-wider text-center">Data link disinkronkan secara otomatis (cloud-save).</p>
+                                    <p className="text-[9px] text-zinc-600 font-bold italic uppercase tracking-widest text-center">Ikon dideteksi secara otomatis melalui URL.</p>
                                 </div>
                             </div>
                         </div>
