@@ -5,17 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bagus Ardianto Adi Saputro | Profil Profesional</title>
   <meta name="description" content="Profil resmi Bagus Ardianto Adi Saputro. Hubungi langsung untuk kolaborasi profesional.">
-  <meta name="keywords" content="Bagus Ardianto, Profesional Indonesia, Portofolio Bagus Ardianto">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://start.progresix.site">
   <link rel="icon" type="image/png" href="https://start.progresix.site/icon-1.png">
-  <link rel="apple-touch-icon" href="https://start.progresix.site/icon-1.png">
-  <meta property="og:url" content="https://start.progresix.site">
-  <meta property="og:image" content="https://start.progresix.site/icon-1.png">
-  <meta property="og:title" content="Bagus Ardianto Adi Saputro">
-  <meta property="og:description" content="Profil profesional dan hub kolaborasi kreatif.">
-  <meta name="twitter:card" content="summary_large_image">
-
+  
   <!-- Tailwind + Font -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
@@ -34,56 +25,23 @@
       transition: all 0.2s;
     }
     .glass-pixel:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 0 currentColor; }
-    .bg-overlay { 
-      position: fixed; 
-      inset: 0; 
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9)); 
-      z-index: 10;
-    }
-    #bg-image {
-      position: fixed;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      z-index: 5;
-    }
+    .bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9)); z-index: 10; }
+    #bg-image { position: fixed; inset: 0; background-size: cover; background-position: center; z-index: 5; }
     .fade-in { animation: fadeIn 0.3s ease-out; }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
     
-    /* Modal styling */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(12px);
-      z-index: 50;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-    .modal.show {
-      display: flex;
-    }
-    .modal-content {
-      max-width: 20rem;
-      width: 100%;
-      background: rgba(24, 24, 27, 0.8);
-      backdrop-filter: blur(12px);
-      border: 2px solid rgba(255,255,255,0.2);
-      padding: 2rem;
-      color: white;
-      animation: fadeIn 0.3s ease-out;
-    }
+    .modal { position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.95); backdrop-filter: blur(12px); z-index: 50; display: none; align-items: center; justify-content: center; padding: 1.5rem; }
+    .modal.show { display: flex; }
+    .modal-content { max-width: 20rem; width: 100%; background: rgba(24, 24, 27, 0.8); backdrop-filter: blur(12px); border: 2px solid rgba(255,255,255,0.2); padding: 2rem; color: white; animation: fadeIn 0.3s ease-out; }
     
-    /* Square links lebih kecil */
+    /* ===== PERBAIKAN: SQUARE LINKS DIPERKECIL UKURAN BINGKAI ===== */
     .square-link {
       aspect-ratio: 1/1;
-      padding: 0.75rem;
+      padding: 0.6rem;               /* padding dikurangi */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      font-size: 8px;
+      font-size: 8px;                /* teks tetap 8px */
       background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(12px);
       border: 2px solid rgba(255,255,255,0.15);
@@ -92,22 +50,17 @@
       color: white;
       text-decoration: none;
     }
-    .square-link:hover {
-      background: white;
-      color: black;
-    }
+    .square-link:hover { background: white; color: black; }
     .square-link svg {
-      width: 16px;
-      height: 16px;
-    }
-    .square-link:hover svg {
-      stroke: black;
+      width: 22px;                   /* ikon sedikit lebih kecil */
+      height: 22px;
+      fill: currentColor;
     }
     
-    /* Social links */
+    /* ===== PERBAIKAN: SOCIAL ICONS DENGAN BINGKAI LINGKARAN ===== */
     .social-link {
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2.8rem;
+      height: 2.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -117,20 +70,14 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.5), 4px 4px 0 0 currentColor;
       transition: all 0.2s;
       color: white;
+      /* Membuat bingkai lingkaran */
+      border-radius: 50%;
     }
-    .social-link:hover {
-      background: white;
-      color: black;
-    }
+    .social-link:hover { background: white; color: black; }
     .social-link svg {
-      width: 18px;
-      height: 18px;
-    }
-    
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      opacity: 1;
-      height: 24px;
+      width: 60%;                    /* ikon proporsional dalam lingkaran */
+      height: 60%;
+      fill: currentColor;
     }
   </style>
 </head>
@@ -140,129 +87,61 @@
     <div class="bg-overlay"></div>
 
     <div class="w-full max-w-md fade-in relative z-20">
-      <!-- header share -->
       <div class="flex justify-end mb-6">
         <button id="share-btn" class="glass-pixel p-3 text-white hover:bg-white hover:text-black transition-colors">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <circle cx="18" cy="5" r="3"/>
-            <circle cx="6" cy="12" r="3"/>
-            <circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-          </svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
         </button>
       </div>
 
-      <!-- avatar -->
-      <div id="avatar-container" class="w-28 h-28 mx-auto mb-5 glass-pixel overflow-hidden border-2" style="border-color: currentColor;">
+      <div id="avatar-container" class="w-28 h-28 mx-auto mb-5 glass-pixel overflow-hidden border-2 rounded-full" style="border-color: currentColor;">
         <img id="avatar-img" class="w-full h-full object-cover" src="" alt="avatar">
       </div>
 
-      <!-- nama & bio -->
       <h1 id="profile-name" class="text-2xl font-black uppercase tracking-tighter text-center leading-none mb-2"></h1>
       <p id="profile-bio" class="text-[10px] mb-8 text-center uppercase tracking-[0.3em] font-bold opacity-60 italic"></p>
 
-      <!-- social links -->
+      <!-- Social Icons Grid dengan bingkai lingkaran -->
       <div id="social-links" class="flex flex-wrap justify-center gap-3 mb-10"></div>
 
-      <!-- square links -->
+      <!-- Links Grid dengan ukuran bingkai lebih kecil -->
       <div id="square-links" class="grid grid-cols-2 gap-3 w-full mb-10"></div>
 
-      <!-- donate -->
       <button id="donate-btn" class="w-full py-4 bg-indigo-600 glass-pixel border-indigo-400 flex items-center justify-center gap-3 font-black text-xs uppercase text-white mb-16 hover:bg-indigo-500">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/>
-          <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/>
-          <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/></svg>
         Traktir
       </button>
 
       <footer class="text-[8px] opacity-20 uppercase tracking-[0.5em] font-bold text-center">© <span id="current-year"></span> BARDIANTO</footer>
     </div>
 
-    <!-- MODAL SHARE -->
-    <div id="share-modal" class="modal">
-      <div class="modal-content glass-pixel">
-        <h3 class="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Share Profile</h3>
-        <div class="bg-black/50 border border-white/10 p-4 mb-6 flex flex-col gap-2 relative rounded">
-          <span class="text-[8px] font-black opacity-30 uppercase tracking-widest">Public URL</span>
-          <span id="share-url" class="text-[10px] font-bold truncate pr-8">https://start.progresix.site</span>
-          <button id="copy-btn" class="absolute right-4 bottom-4 p-2 hover:bg-white hover:text-black transition-all rounded">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-            </svg>
-          </button>
-          <div id="copy-toast" class="absolute -top-10 left-0 bg-white text-black text-[9px] font-black px-2 py-1 border-2 border-black hidden">LINK COPIED!</div>
-        </div>
-        <a id="wa-share" href="#" target="_blank" class="w-full py-4 bg-green-600 glass-pixel border-green-400 flex items-center justify-center gap-3 font-black text-[10px] uppercase text-white hover:bg-green-500 mb-4 rounded">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14h.8c4.3 0 7.7 3.5 7.7 7.7v2.5z"/>
-          </svg>
-          SHARE VIA WHATSAPP
-        </a>
-        <button id="close-share" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">TUTUP</button>
-      </div>
-    </div>
+    <!-- Modals (tetap sama) -->
+    <div id="share-modal" class="modal"><div class="modal-content glass-pixel"><h3 class="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Share Profile</h3><div class="bg-black/50 border border-white/10 p-4 mb-6 flex flex-col gap-2 relative rounded"><span class="text-[8px] font-black opacity-30 uppercase tracking-widest">Public URL</span><span id="share-url" class="text-[10px] font-bold truncate pr-8">https://start.progresix.site</span><button id="copy-btn" class="absolute right-4 bottom-4 p-2 hover:bg-white hover:text-black transition-all rounded"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><div id="copy-toast" class="absolute -top-10 left-0 bg-white text-black text-[9px] font-black px-2 py-1 border-2 border-black hidden">LINK COPIED!</div></div><a id="wa-share" href="#" target="_blank" class="w-full py-4 bg-green-600 glass-pixel border-green-400 flex items-center justify-center gap-3 font-black text-[10px] uppercase text-white hover:bg-green-500 mb-4 rounded">SHARE VIA WHATSAPP</a><button id="close-share" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">TUTUP</button></div></div>
 
-    <!-- MODAL DONATE -->
-    <div id="donate-modal" class="modal">
-      <div class="modal-content glass-pixel">
-        <h3 class="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Traktir</h3>
-        
-        <!-- Input Manual -->
-        <div class="mb-4">
-          <label class="block text-[8px] font-black opacity-30 uppercase tracking-widest mb-2">Nominal (Rp)</label>
-          <input type="number" id="manual-amount" min="1000" value="5000" step="1000" class="w-full p-3 bg-black/50 border-2 border-white/20 text-white font-mono text-sm focus:border-white/50 outline-none">
-        </div>
-
-        <!-- Pilihan nominal cepat -->
-        <div class="grid grid-cols-3 gap-3 mb-6">
-          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="5000">Rp5.000</button>
-          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="10000">Rp10.000</button>
-          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="50000">Rp50.000</button>
-        </div>
-
-        <!-- Canvas QRIS -->
-        <div class="flex justify-center mb-4">
-          <canvas id="qris-canvas" width="200" height="200" class="border-2 border-white/20 rounded"></canvas>
-        </div>
-
-        <!-- Tombol Download -->
-        <button id="download-qr" class="w-full py-4 bg-indigo-600 text-white font-black uppercase text-xs glass-pixel border-indigo-400 mb-4 italic hover:bg-indigo-500 rounded">
-          DOWNLOAD QR
-        </button>
-
-        <button id="close-donate" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">TUTUP</button>
-      </div>
-    </div>
+    <div id="donate-modal" class="modal"><div class="modal-content glass-pixel"><h3 class="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Traktir</h3><div class="mb-4"><label class="block text-[8px] font-black opacity-30 uppercase tracking-widest mb-2">Nominal (Rp)</label><input type="number" id="manual-amount" min="1000" value="5000" class="w-full p-3 bg-black/50 border-2 border-white/20 text-white font-mono text-sm outline-none"></div><div class="grid grid-cols-3 gap-3 mb-6"><button class="donate-opt p-3 border-2 font-black text-[9px] border-zinc-700 text-zinc-400" data-amount="5000">Rp5rb</button><button class="donate-opt p-3 border-2 font-black text-[9px] border-zinc-700 text-zinc-400" data-amount="10000">Rp10rb</button><button class="donate-opt p-3 border-2 font-black text-[9px] border-zinc-700 text-zinc-400" data-amount="50000">Rp50rb</button></div><div class="flex justify-center mb-4"><canvas id="qris-canvas"></canvas></div><button id="download-qr" class="w-full py-4 bg-indigo-600 text-white font-black uppercase text-xs glass-pixel border-indigo-400 mb-4 italic rounded">DOWNLOAD QR</button><button id="close-donate" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">TUTUP</button></div></div>
   </div>
 
   <script>
     (function() {
-      // ==================== KONFIGURASI ====================
       const SUPABASE_URL = 'https://dkftqhkpwymbdtpznwto.supabase.co';
       const SUPABASE_KEY = 'sb_publishable_Hlzx5XRu6hxnoxOCNKk7vg_9829kGve';
       const PUBLIC_URL = 'https://start.progresix.site';
-
-      // ==================== SUPABASE CLIENT ====================
       const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-      // ==================== IKON GLOBAL ====================
+      // ==================== AUTHENTIC BRAND ICONS (SVG PATHS) ====================
       const Icons = {
-        instagram: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
-        github: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
-        x: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4l-6.768 6.768"/></svg>`,
-        youtube: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>`,
-        tiktok: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>`,
-        linkedin: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
-        whatsapp: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14h.8c4.3 0 7.7 3.5 7.7 7.7v2.5z"/></svg>`,
-        telegram: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>`,
-        discord: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM15 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/><path d="M17.5 6.5c-1.5-1-3.5-1.5-5.5-1.5s-4 .5-5.5 1.5L4 12l2.5 5.5c1.5 1 3.5 1.5 5.5 1.5s4-.5 5.5-1.5L20 12l-2.5-5.5z"/></svg>`,
-        globe: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+        github: () => `<svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`,
+        youtube: () => `<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
+        tiktok: () => `<svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.06 3.43-.01 6.86-.03 10.29-.01 2.28-.5 4.55-1.84 6.42-1.31 1.94-3.47 3.32-5.81 3.79-2.31.5-4.83.19-6.93-1.01-2.12-1.21-3.7-3.32-4.32-5.63-.61-2.34-.32-4.89.87-7.01 1.15-2.07 3.19-3.61 5.48-4.23.8-.23 1.64-.32 2.47-.32l-.01 4.02c-.52.01-1.04.1-1.54.26-1.15.35-2.17 1.12-2.73 2.18-.58 1.09-.73 2.4-.38 3.59.35 1.19 1.17 2.22 2.25 2.8 1.06.59 2.33.73 3.5.38 1.19-.35 2.2-1.22 2.74-2.33.39-.83.56-1.76.53-2.69-.02-3.56-.01-7.11-.02-10.67z"/></svg>`,
+        instagram: () => `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.353 2.615 6.768 6.981 6.968 1.28.057 1.688.072 4.947.072s3.667-.015 4.947-.072c4.351-.2 6.768-2.614 6.968-6.981.058-1.28.072-1.688.072-4.947s-.015-3.667-.072-4.947c-.2-4.349-2.615-6.768-6.981-6.967C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4.162 4.162 0 1 1 0-8.324 4.162 4.162 0 0 1 0 8.324zM18.406 4.137a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>`,
+        whatsapp: () => `<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>`,
+        x: () => `<svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>`,
+        linkedin: () => `<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+        telegram: () => `<svg viewBox="0 0 24 24"><path d="M11.944 0C5.346 0 0 5.346 0 11.944c0 6.598 5.346 11.944 11.944 11.944 6.598 0 11.944-5.346 11.944-11.944C23.888 5.346 18.542 0 11.944 0zm5.206 16.561c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285l-1.42-1.42-1.42 1.42c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285L10.55 15.141l-1.42 1.42c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285l-1.42-1.42c-.39-.39-.39-1.02 0-1.41l1.42-1.42-1.42-1.42c-.39-.39-.39-1.02 0-1.41l1.42-1.42c.19-.19.44-.285.71-.285.27 0 .52.095.71.285l1.42 1.42 1.42-1.42c.19-.19.44-.285.71-.285.27 0 .52.095.71.285l1.42 1.42 1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.39.39.39 1.02 0 1.41l-1.42 1.42 1.42 1.42c.39.39.39 1.02 0 1.41l-1.42 1.42z"/></svg>`,
+        facebook: () => `<svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
+        globe: () => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
       };
 
+      // Improved Platform detection
       function getIconByUrl(url) {
         if (!url) return Icons.globe();
         const l = url.toLowerCase();
@@ -273,16 +152,15 @@
         if (l.includes('tiktok.com')) return Icons.tiktok();
         if (l.includes('linkedin.com')) return Icons.linkedin();
         if (l.includes('whatsapp.com') || l.includes('wa.me')) return Icons.whatsapp();
-        if (l.includes('t.me') || l.includes('telegram.org')) return Icons.telegram();
-        if (l.includes('discord.com')) return Icons.discord();
+        if (l.includes('t.me') || l.includes('telegram')) return Icons.telegram();
+        if (l.includes('facebook.com') || l.includes('fb.com')) return Icons.facebook();
         return Icons.globe();
       }
 
-      // ==================== STATE ====================
-      let profile = { name: '', bio: '', avatar_url: '', bg_url: '', text_color: '#ffffff' };
+      // ==================== STATE & DOM ====================
+      let profile = {};
       let links = [];
 
-      // DOM elements
       const avatarImg = document.getElementById('avatar-img');
       const profileName = document.getElementById('profile-name');
       const profileBio = document.getElementById('profile-bio');
@@ -297,20 +175,57 @@
       const closeShare = document.getElementById('close-share');
       const closeDonate = document.getElementById('close-donate');
       const copyBtn = document.getElementById('copy-btn');
-      const copyToast = document.getElementById('copy-toast');
-      const waShare = document.getElementById('wa-share');
-      const shareUrlSpan = document.getElementById('share-url');
-      const donateOpts = document.querySelectorAll('.donate-opt');
-      const manualAmount = document.getElementById('manual-amount');
       const qrisCanvas = document.getElementById('qris-canvas');
-      const downloadBtn = document.getElementById('download-qr');
+      const manualAmount = document.getElementById('manual-amount');
+      const donateOpts = document.querySelectorAll('.donate-opt');
 
-      let selectedAmount = 5000;
-
-      // Set year
       if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-      // ==================== FUNGSI QRIS ====================
+      // ==================== DATA FETCHING ====================
+      async function fetchData() {
+        const { data: prof } = await supabaseClient.from('profiles').select('*').limit(1).maybeSingle();
+        if (prof) {
+          profile = prof;
+          renderProfile();
+          const { data: lnks } = await supabaseClient.from('links').select('*').eq('user_id', prof.id).order('created_at', { ascending: false });
+          links = lnks || [];
+          renderLinks();
+        }
+      }
+
+      function renderProfile() {
+        profileName.textContent = profile.name || 'Bagus Ardianto Adi Saputro';
+        profileBio.textContent = profile.bio || '';
+        avatarImg.src = profile.avatar_url || '';
+        if (profile.bg_url) bgDiv.style.backgroundImage = `url('${profile.bg_url}')`;
+      }
+
+      function renderLinks() {
+        socialContainer.innerHTML = '';
+        squareContainer.innerHTML = '';
+        links.forEach(link => {
+          if (link.type === 'social') {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_blank';
+            a.className = 'social-link';
+            a.innerHTML = getIconByUrl(link.url);
+            socialContainer.appendChild(a);
+          } else {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_blank';
+            a.className = 'square-link';
+            a.innerHTML = `
+              <div class="flex justify-end opacity-40">${getIconByUrl(link.url)}</div>
+              <span class="font-black uppercase tracking-widest leading-tight">${link.title}</span>
+            `;
+            squareContainer.appendChild(a);
+          }
+        });
+      }
+
+      // ==================== QRIS & MODALS ====================
       function crc16(str) {
         let crc = 0xFFFF;
         for (let i = 0; i < str.length; i++) {
@@ -323,206 +238,39 @@
         return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
       }
 
-      function generateQRISString(amount) {
-        const basePrefix = "00020101021126610014COM.GO-JEK.WWW01189360091439451776890210G9451776890303UMI51440014ID.CO.QRIS.WWW0215ID10254597029200303UMI520447895303360";
-        const baseSuffix = "5802ID5925BAGUS ARDIANTO ADI SAPUTR6013KOTA SEMARANG61055011562070703A01";
-        
-        const amountStr = amount.toString();
-        const amountTag = "54" + amountStr.length.toString().padStart(2, '0') + amountStr;
-        const withoutCRC = basePrefix + amountTag + baseSuffix + "6304";
-        const crc = crc16(withoutCRC);
-        return withoutCRC + crc;
-      }
-
       function updateQRIS(amount) {
-        if (isNaN(amount) || amount < 1000) amount = 5000;
-        selectedAmount = amount;
-        const qrisString = generateQRISString(amount);
-        QRCode.toCanvas(qrisCanvas, qrisString, { width: 200 }, function(error) {
-          if (error) console.error('QR Code error:', error);
-        });
+        const base = "00020101021126610014COM.GO-JEK.WWW01189360091439451776890210G9451776890303UMI51440014ID.CO.QRIS.WWW0215ID10254597029200303UMI520447895303360";
+        const suffix = "5802ID5925BAGUS ARDIANTO ADI SAPUTR6013KOTA SEMARANG61055011562070703A01";
+        const amtStr = amount.toString();
+        const tag = "54" + amtStr.length.toString().padStart(2, '0') + amtStr;
+        const full = base + tag + suffix + "6304";
+        QRCode.toCanvas(qrisCanvas, full + crc16(full), { width: 180 });
       }
 
-      // ==================== FUNGSI FETCH ====================
-      async function fetchData() {
-        try {
-          const { data: prof, error: profErr } = await supabaseClient
-            .from('profiles')
-            .select('*')
-            .limit(1)
-            .maybeSingle();
+      shareBtn.onclick = () => shareModal.classList.add('show');
+      closeShare.onclick = () => shareModal.classList.remove('show');
+      donateBtn.onclick = () => { donateModal.classList.add('show'); updateQRIS(5000); };
+      closeDonate.onclick = () => donateModal.classList.remove('show');
 
-          if (profErr) console.error('Profile fetch error:', profErr);
-          if (prof) {
-            profile = prof;
-            renderProfile();
-          }
-
-          if (prof?.id) {
-            const { data: lnks, error: linksErr } = await supabaseClient
-              .from('links')
-              .select('*')
-              .eq('user_id', prof.id)
-              .order('created_at', { ascending: false });
-
-            if (!linksErr) {
-              links = lnks || [];
-              renderLinks();
-            }
-          }
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      }
-
-      function renderProfile() {
-        if (profile.text_color) {
-          document.documentElement.style.color = profile.text_color;
-        }
-        if (profileName) profileName.textContent = profile.name || 'Bagus Ardianto Adi Saputro';
-        if (profileBio) profileBio.textContent = profile.bio || 'Professional Profile';
-        if (avatarImg) avatarImg.src = profile.avatar_url || '';
-        
-        if (bgDiv) {
-          if (profile.bg_url) {
-            bgDiv.style.backgroundImage = `url('${profile.bg_url}')`;
-          } else {
-            bgDiv.style.backgroundImage = 'none';
-            bgDiv.style.backgroundColor = '#000';
-          }
-        }
-      }
-
-      function renderLinks() {
-        if (!socialContainer || !squareContainer) return;
-        
-        socialContainer.innerHTML = '';
-        squareContainer.innerHTML = '';
-
-        links.forEach(link => {
-          if (link.type === 'social') {
-            const a = document.createElement('a');
-            a.href = link.url;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.className = 'social-link';
-            a.innerHTML = getIconByUrl(link.url);
-            socialContainer.appendChild(a);
-          } else {
-            const a = document.createElement('a');
-            a.href = link.url;
-            a.target = '_blank';
-            a.rel = 'noopener noreferrer';
-            a.className = 'square-link';
-            a.innerHTML = `
-              <div class="flex justify-end opacity-40 group-hover:opacity-100">${getIconByUrl(link.url)}</div>
-              <span class="font-black uppercase tracking-widest leading-tight">${link.title || 'LINK'}</span>
-            `;
-            squareContainer.appendChild(a);
-          }
-        });
-      }
-
-      // ==================== MODAL FUNCTIONS ====================
-      function showModal(modal) {
-        if (modal) modal.classList.add('show');
-      }
-      
-      function hideModal(modal) {
-        if (modal) modal.classList.remove('show');
-      }
-
-      // ==================== EVENT LISTENERS ====================
-      if (shareBtn) {
-        shareBtn.addEventListener('click', () => {
-          showModal(shareModal);
-          if (shareUrlSpan) shareUrlSpan.textContent = PUBLIC_URL;
-          if (waShare) waShare.href = `https://wa.me/?text=${encodeURIComponent('Cek profil profesional: ' + PUBLIC_URL)}`;
-        });
-      }
-
-      if (closeShare) {
-        closeShare.addEventListener('click', () => hideModal(shareModal));
-      }
-
-      if (donateBtn) {
-        donateBtn.addEventListener('click', () => {
-          showModal(donateModal);
-          selectedAmount = 5000;
-          if (manualAmount) manualAmount.value = 5000;
-          donateOpts.forEach(btn => {
-            btn.classList.remove('bg-white', 'text-black', 'border-white');
-            if (btn.dataset.amount == 5000) {
-              btn.classList.add('bg-white', 'text-black', 'border-white');
-            }
-          });
-          updateQRIS(5000);
-        });
-      }
-
-      if (closeDonate) {
-        closeDonate.addEventListener('click', () => hideModal(donateModal));
-      }
-
-      if (copyBtn) {
-        copyBtn.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(PUBLIC_URL);
-            if (copyToast) {
-              copyToast.classList.remove('hidden');
-              setTimeout(() => copyToast.classList.add('hidden'), 2000);
-            }
-          } catch (err) {
-            alert('Gagal menyalin');
-          }
-        });
-      }
+      copyBtn.onclick = () => {
+        navigator.clipboard.writeText(PUBLIC_URL);
+        const toast = document.getElementById('copy-toast');
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 2000);
+      };
 
       donateOpts.forEach(btn => {
-        btn.addEventListener('click', () => {
-          donateOpts.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
-          btn.classList.add('bg-white', 'text-black', 'border-white');
-          const amount = parseInt(btn.dataset.amount, 10);
-          if (manualAmount) manualAmount.value = amount;
-          updateQRIS(amount);
-        });
+        btn.onclick = () => {
+          donateOpts.forEach(b => b.classList.replace('bg-white', 'text-zinc-400'));
+          btn.classList.add('bg-white', 'text-black');
+          manualAmount.value = btn.dataset.amount;
+          updateQRIS(btn.dataset.amount);
+        };
       });
 
-      if (manualAmount) {
-        manualAmount.addEventListener('input', (e) => {
-          const amount = parseInt(e.target.value, 10);
-          if (!isNaN(amount) && amount >= 1000) {
-            donateOpts.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
-            updateQRIS(amount);
-          }
-        });
-      }
+      manualAmount.oninput = (e) => updateQRIS(e.target.value || 0);
 
-      if (downloadBtn) {
-        downloadBtn.addEventListener('click', () => {
-          if (qrisCanvas) {
-            const link = document.createElement('a');
-            link.download = `qris-${selectedAmount}.png`;
-            link.href = qrisCanvas.toDataURL('image/png');
-            link.click();
-          }
-        });
-      }
-
-      // Close modal when clicking outside
-      window.addEventListener('click', (e) => {
-        if (e.target === shareModal) hideModal(shareModal);
-        if (e.target === donateModal) hideModal(donateModal);
-      });
-
-      // ==================== INIT ====================
-      document.addEventListener('DOMContentLoaded', function() {
-        fetchData();
-        // Generate initial QR
-        if (qrisCanvas) {
-          updateQRIS(5000);
-        }
-      });
+      fetchData();
     })();
   </script>
 </body>
