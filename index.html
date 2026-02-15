@@ -21,6 +21,8 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
   <!-- Supabase JS -->
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <!-- QRCode library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 
   <style>
     body { font-family: 'JetBrains Mono', monospace; background: #000; color: #fff; }
@@ -94,18 +96,29 @@
       </div>
     </div>
 
-    <!-- MODAL DONATE (dummy) -->
+    <!-- MODAL DONATE (dengan QRIS) -->
     <div id="donate-modal" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 hidden items-center justify-center p-6">
       <div class="w-full max-w-xs glass-pixel bg-zinc-900/80 p-8 text-white fade-in border-2 border-white/20">
         <h3 class="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Support Project</h3>
-        <div class="grid grid-cols-2 gap-3 mb-8">
-          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="10000">IDR 10,000</button>
-          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="25000">IDR 25,000</button>
-          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="50000">IDR 50,000</button>
-          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="100000">IDR 100,000</button>
+        
+        <!-- Pilihan nominal -->
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="5000">Rp5.000</button>
+          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="10000">Rp10.000</button>
+          <button class="donate-opt p-3 border-2 font-black text-[9px] transition-colors border-zinc-700 text-zinc-400 hover:border-zinc-400" data-amount="50000">Rp50.000</button>
         </div>
-        <button id="proceed-donate" class="w-full py-4 bg-indigo-600 text-white font-black uppercase text-xs glass-pixel border-indigo-400 mb-4 italic hover:bg-indigo-500 rounded">PROCEED_SUPPORT</button>
-        <button id="close-donate" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">CANCEL</button>
+
+        <!-- Canvas QRIS -->
+        <div class="flex justify-center mb-4">
+          <canvas id="qris-canvas" width="200" height="200" class="border-2 border-white/20 rounded"></canvas>
+        </div>
+
+        <!-- Tombol Download -->
+        <button id="download-qr" class="w-full py-4 bg-indigo-600 text-white font-black uppercase text-xs glass-pixel border-indigo-400 mb-4 italic hover:bg-indigo-500 rounded">
+          DOWNLOAD QR
+        </button>
+
+        <button id="close-donate" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">TUTUP</button>
       </div>
     </div>
   </div>
@@ -171,12 +184,45 @@
     const waShare = document.getElementById('wa-share');
     const shareUrlSpan = document.getElementById('share-url');
     const donateOpts = document.querySelectorAll('.donate-opt');
-    const proceedDonate = document.getElementById('proceed-donate');
+    const qrisCanvas = document.getElementById('qris-canvas');
+    const downloadBtn = document.getElementById('download-qr');
 
-    let selectedAmount = 10000;
+    let selectedAmount = 5000; // default
 
     // Set year
     yearSpan.textContent = new Date().getFullYear();
+
+    // ==================== FUNGSI QRIS ====================
+    function crc16(str) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < str.length; i++) {
+        crc ^= (str.charCodeAt(i) << 8);
+        for (let j = 0; j < 8; j++) {
+          if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+          else crc = crc << 1;
+        }
+      }
+      return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    function generateQRISString(amount) {
+      // Base merchant string (tanpa amount dan CRC)
+      const basePrefix = "00020101021126610014COM.GO-JEK.WWW01189360091439451776890210G9451776890303UMI51440014ID.CO.QRIS.WWW0215ID10254597029200303UMI520447895303360";
+      const baseSuffix = "5802ID5925BAGUS ARDIANTO ADI SAPUTR6013KOTA SEMARANG61055011562070703A01";
+      
+      const amountStr = amount.toString();
+      const amountTag = "54" + amountStr.length.toString().padStart(2, '0') + amountStr;
+      const withoutCRC = basePrefix + amountTag + baseSuffix + "6304";
+      const crc = crc16(withoutCRC);
+      return withoutCRC + crc;
+    }
+
+    function updateQRIS(amount) {
+      const qrisString = generateQRISString(amount);
+      QRCode.toCanvas(qrisCanvas, qrisString, { width: 200 }, function(error) {
+        if (error) console.error('QR Code error:', error);
+      });
+    }
 
     // ==================== FUNGSI ====================
     async function fetchData() {
@@ -262,6 +308,15 @@
     donateBtn.addEventListener('click', () => {
       donateModal.classList.remove('hidden');
       donateModal.classList.add('flex');
+      // Reset pilihan ke 5000 dan generate QR
+      selectedAmount = 5000;
+      donateOpts.forEach(btn => {
+        btn.classList.remove('bg-white', 'text-black', 'border-white');
+        if (btn.dataset.amount == 5000) {
+          btn.classList.add('bg-white', 'text-black', 'border-white');
+        }
+      });
+      updateQRIS(5000);
     });
 
     closeDonate.addEventListener('click', () => {
@@ -279,18 +334,22 @@
       }
     });
 
+    // Pilihan nominal
     donateOpts.forEach(btn => {
       btn.addEventListener('click', () => {
         donateOpts.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
         btn.classList.add('bg-white', 'text-black', 'border-white');
         selectedAmount = parseInt(btn.dataset.amount, 10);
+        updateQRIS(selectedAmount);
       });
     });
 
-    proceedDonate.addEventListener('click', () => {
-      alert(`Terima kasih! Donasi IDR ${selectedAmount.toLocaleString()} (dummy)`);
-      donateModal.classList.add('hidden');
-      donateModal.classList.remove('flex');
+    // Download QR
+    downloadBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = `qris-${selectedAmount}.png`;
+      link.href = qrisCanvas.toDataURL('image/png');
+      link.click();
     });
 
     // Tutup modal jika klik di luar
