@@ -34,9 +34,99 @@
       transition: all 0.2s;
     }
     .glass-pixel:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 0 currentColor; }
-    .bg-overlay { position: fixed; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9)); z-index: -1; }
+    .bg-overlay { 
+      position: fixed; 
+      inset: 0; 
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9)); 
+      z-index: 10;
+    }
+    #bg-image {
+      position: fixed;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 5;
+    }
     .fade-in { animation: fadeIn 0.3s ease-out; }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+    
+    /* Modal styling */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal.show {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 20rem;
+      width: 100%;
+      background: rgba(24, 24, 27, 0.8);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.2);
+      padding: 2rem;
+      color: white;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    /* Square links lebih kecil */
+    .square-link {
+      aspect-ratio: 1/1;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5), 4px 4px 0 0 currentColor;
+      transition: all 0.2s;
+      color: white;
+      text-decoration: none;
+    }
+    .square-link:hover {
+      background: white;
+      color: black;
+    }
+    .square-link svg {
+      width: 16px;
+      height: 16px;
+    }
+    .square-link:hover svg {
+      stroke: black;
+    }
+    
+    /* Social links */
+    .social-link {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,0.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5), 4px 4px 0 0 currentColor;
+      transition: all 0.2s;
+      color: white;
+    }
+    .social-link:hover {
+      background: white;
+      color: black;
+    }
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+    }
+    
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
       opacity: 1;
@@ -46,14 +136,20 @@
 </head>
 <body class="antialiased">
   <div id="app" class="min-h-screen flex flex-col items-center px-4 py-8 relative">
-    <div id="bg-image" class="fixed inset-0 -z-20 bg-cover bg-center"></div>
+    <div id="bg-image" class="bg-cover bg-center"></div>
     <div class="bg-overlay"></div>
 
-    <div class="w-full max-w-md fade-in">
+    <div class="w-full max-w-md fade-in relative z-20">
       <!-- header share -->
       <div class="flex justify-end mb-6">
         <button id="share-btn" class="glass-pixel p-3 text-white hover:bg-white hover:text-black transition-colors">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
         </button>
       </div>
 
@@ -67,14 +163,18 @@
       <p id="profile-bio" class="text-[10px] mb-8 text-center uppercase tracking-[0.3em] font-bold opacity-60 italic"></p>
 
       <!-- social links -->
-      <div id="social-links" class="flex flex-wrap justify-center gap-4 mb-10"></div>
+      <div id="social-links" class="flex flex-wrap justify-center gap-3 mb-10"></div>
 
-      <!-- square links (grid 2 kolom) -->
-      <div id="square-links" class="grid grid-cols-2 gap-4 w-full mb-10"></div>
+      <!-- square links -->
+      <div id="square-links" class="grid grid-cols-2 gap-3 w-full mb-10"></div>
 
       <!-- donate -->
       <button id="donate-btn" class="w-full py-4 bg-indigo-600 glass-pixel border-indigo-400 flex items-center justify-center gap-3 font-black text-xs uppercase text-white mb-16 hover:bg-indigo-500">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/>
+          <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/>
+          <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/>
+        </svg>
         Traktir
       </button>
 
@@ -82,28 +182,33 @@
     </div>
 
     <!-- MODAL SHARE -->
-    <div id="share-modal" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 hidden items-center justify-center p-6">
-      <div class="w-full max-w-xs glass-pixel bg-zinc-900/80 p-8 text-white fade-in border-2 border-white/20">
+    <div id="share-modal" class="modal">
+      <div class="modal-content glass-pixel">
         <h3 class="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Share Profile</h3>
         <div class="bg-black/50 border border-white/10 p-4 mb-6 flex flex-col gap-2 relative rounded">
           <span class="text-[8px] font-black opacity-30 uppercase tracking-widest">Public URL</span>
           <span id="share-url" class="text-[10px] font-bold truncate pr-8">https://start.progresix.site</span>
           <button id="copy-btn" class="absolute right-4 bottom-4 p-2 hover:bg-white hover:text-black transition-all rounded">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
           </button>
-          <div id="copy-toast" class="absolute -top-10 left-0 bg-white text-black text-[9px] font-black px-2 py-1 border-2 border-black hidden">LINK_COPIED</div>
+          <div id="copy-toast" class="absolute -top-10 left-0 bg-white text-black text-[9px] font-black px-2 py-1 border-2 border-black hidden">LINK COPIED!</div>
         </div>
         <a id="wa-share" href="#" target="_blank" class="w-full py-4 bg-green-600 glass-pixel border-green-400 flex items-center justify-center gap-3 font-black text-[10px] uppercase text-white hover:bg-green-500 mb-4 rounded">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14h.8c4.3 0 7.7 3.5 7.7 7.7v2.5z"/></svg>
-          SHARE_WHATSAPP
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14h.8c4.3 0 7.7 3.5 7.7 7.7v2.5z"/>
+          </svg>
+          SHARE VIA WHATSAPP
         </a>
-        <button id="close-share" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">CLOSE</button>
+        <button id="close-share" class="w-full text-[9px] font-bold text-zinc-500 uppercase tracking-widest hover:text-white">TUTUP</button>
       </div>
     </div>
 
-    <!-- MODAL DONATE (dengan QRIS + input manual) -->
-    <div id="donate-modal" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 hidden items-center justify-center p-6">
-      <div class="w-full max-w-xs glass-pixel bg-zinc-900/80 p-8 text-white fade-in border-2 border-white/20">
+    <!-- MODAL DONATE -->
+    <div id="donate-modal" class="modal">
+      <div class="modal-content glass-pixel">
         <h3 class="text-xl font-black uppercase italic border-b-2 border-white pb-3 mb-6 tracking-tighter">Traktir</h3>
         
         <!-- Input Manual -->
@@ -135,258 +240,290 @@
   </div>
 
   <script>
-    // ==================== KONFIGURASI ====================
-    const SUPABASE_URL = 'https://dkftqhkpwymbdtpznwto.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_Hlzx5XRu6hxnoxOCNKk7vg_9829kGve';
-    const PUBLIC_URL = 'https://start.progresix.site';
+    (function() {
+      // ==================== KONFIGURASI ====================
+      const SUPABASE_URL = 'https://dkftqhkpwymbdtpznwto.supabase.co';
+      const SUPABASE_KEY = 'sb_publishable_Hlzx5XRu6hxnoxOCNKk7vg_9829kGve';
+      const PUBLIC_URL = 'https://start.progresix.site';
 
-    // ==================== SUPABASE CLIENT ====================
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      // ==================== SUPABASE CLIENT ====================
+      const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // ==================== IKON GLOBAL ====================
-    const Icons = {
-      instagram: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
-      github: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
-      x: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4l-6.768 6.768"/></svg>`,
-      youtube: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>`,
-      tiktok: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>`,
-      linkedin: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
-      donate: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/></svg>`,
-      trash: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>`,
-      upload: () => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`,
-      global: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
-      check: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`,
-      share: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`,
-      copy: () => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`,
-      whatsapp: () => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14h.8c4.3 0 7.7 3.5 7.7 7.7v2.5z"/></svg>`,
-    };
+      // ==================== IKON GLOBAL ====================
+      const Icons = {
+        instagram: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+        github: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
+        x: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733-16zM4 20l6.768-6.768M20 4l-6.768 6.768"/></svg>`,
+        youtube: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.11 1 12 1 12s0 3.89.46 5.58a2.78 2.78 0 0 0 1.94 2c1.72.42 8.6.42 8.6.42s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.89 23 12 23 12s0-3.89-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>`,
+        tiktok: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>`,
+        linkedin: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+        whatsapp: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-14h.8c4.3 0 7.7 3.5 7.7 7.7v2.5z"/></svg>`,
+        telegram: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>`,
+        discord: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM15 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/><path d="M17.5 6.5c-1.5-1-3.5-1.5-5.5-1.5s-4 .5-5.5 1.5L4 12l2.5 5.5c1.5 1 3.5 1.5 5.5 1.5s4-.5 5.5-1.5L20 12l-2.5-5.5z"/></svg>`,
+        globe: () => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+      };
 
-    function getIconByUrl(url) {
-      const l = url.toLowerCase();
-      if (l.includes('instagram.com')) return Icons.instagram();
-      if (l.includes('github.com')) return Icons.github();
-      if (l.includes('twitter.com') || l.includes('x.com')) return Icons.x();
-      if (l.includes('youtube.com') || l.includes('youtu.be')) return Icons.youtube();
-      if (l.includes('tiktok.com')) return Icons.tiktok();
-      if (l.includes('linkedin.com')) return Icons.linkedin();
-      return Icons.global();
-    }
+      function getIconByUrl(url) {
+        if (!url) return Icons.globe();
+        const l = url.toLowerCase();
+        if (l.includes('instagram.com')) return Icons.instagram();
+        if (l.includes('github.com')) return Icons.github();
+        if (l.includes('twitter.com') || l.includes('x.com')) return Icons.x();
+        if (l.includes('youtube.com') || l.includes('youtu.be')) return Icons.youtube();
+        if (l.includes('tiktok.com')) return Icons.tiktok();
+        if (l.includes('linkedin.com')) return Icons.linkedin();
+        if (l.includes('whatsapp.com') || l.includes('wa.me')) return Icons.whatsapp();
+        if (l.includes('t.me') || l.includes('telegram.org')) return Icons.telegram();
+        if (l.includes('discord.com')) return Icons.discord();
+        return Icons.globe();
+      }
 
-    // ==================== STATE ====================
-    let profile = { name: '', bio: '', avatar_url: '', bg_url: '', text_color: '#ffffff' };
-    let links = [];
+      // ==================== STATE ====================
+      let profile = { name: '', bio: '', avatar_url: '', bg_url: '', text_color: '#ffffff' };
+      let links = [];
 
-    // DOM elements
-    const avatarImg = document.getElementById('avatar-img');
-    const profileName = document.getElementById('profile-name');
-    const profileBio = document.getElementById('profile-bio');
-    const socialContainer = document.getElementById('social-links');
-    const squareContainer = document.getElementById('square-links');
-    const bgDiv = document.getElementById('bg-image');
-    const yearSpan = document.getElementById('current-year');
-    const shareModal = document.getElementById('share-modal');
-    const donateModal = document.getElementById('donate-modal');
-    const shareBtn = document.getElementById('share-btn');
-    const donateBtn = document.getElementById('donate-btn');
-    const closeShare = document.getElementById('close-share');
-    const closeDonate = document.getElementById('close-donate');
-    const copyBtn = document.getElementById('copy-btn');
-    const copyToast = document.getElementById('copy-toast');
-    const waShare = document.getElementById('wa-share');
-    const shareUrlSpan = document.getElementById('share-url');
-    const donateOpts = document.querySelectorAll('.donate-opt');
-    const manualAmount = document.getElementById('manual-amount');
-    const qrisCanvas = document.getElementById('qris-canvas');
-    const downloadBtn = document.getElementById('download-qr');
+      // DOM elements
+      const avatarImg = document.getElementById('avatar-img');
+      const profileName = document.getElementById('profile-name');
+      const profileBio = document.getElementById('profile-bio');
+      const socialContainer = document.getElementById('social-links');
+      const squareContainer = document.getElementById('square-links');
+      const bgDiv = document.getElementById('bg-image');
+      const yearSpan = document.getElementById('current-year');
+      const shareModal = document.getElementById('share-modal');
+      const donateModal = document.getElementById('donate-modal');
+      const shareBtn = document.getElementById('share-btn');
+      const donateBtn = document.getElementById('donate-btn');
+      const closeShare = document.getElementById('close-share');
+      const closeDonate = document.getElementById('close-donate');
+      const copyBtn = document.getElementById('copy-btn');
+      const copyToast = document.getElementById('copy-toast');
+      const waShare = document.getElementById('wa-share');
+      const shareUrlSpan = document.getElementById('share-url');
+      const donateOpts = document.querySelectorAll('.donate-opt');
+      const manualAmount = document.getElementById('manual-amount');
+      const qrisCanvas = document.getElementById('qris-canvas');
+      const downloadBtn = document.getElementById('download-qr');
 
-    let selectedAmount = 5000; // default
+      let selectedAmount = 5000;
 
-    // Set year
-    yearSpan.textContent = new Date().getFullYear();
+      // Set year
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    // ==================== FUNGSI QRIS ====================
-    function crc16(str) {
-      let crc = 0xFFFF;
-      for (let i = 0; i < str.length; i++) {
-        crc ^= (str.charCodeAt(i) << 8);
-        for (let j = 0; j < 8; j++) {
-          if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
-          else crc = crc << 1;
+      // ==================== FUNGSI QRIS ====================
+      function crc16(str) {
+        let crc = 0xFFFF;
+        for (let i = 0; i < str.length; i++) {
+          crc ^= (str.charCodeAt(i) << 8);
+          for (let j = 0; j < 8; j++) {
+            if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+            else crc = crc << 1;
+          }
+        }
+        return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+      }
+
+      function generateQRISString(amount) {
+        const basePrefix = "00020101021126610014COM.GO-JEK.WWW01189360091439451776890210G9451776890303UMI51440014ID.CO.QRIS.WWW0215ID10254597029200303UMI520447895303360";
+        const baseSuffix = "5802ID5925BAGUS ARDIANTO ADI SAPUTR6013KOTA SEMARANG61055011562070703A01";
+        
+        const amountStr = amount.toString();
+        const amountTag = "54" + amountStr.length.toString().padStart(2, '0') + amountStr;
+        const withoutCRC = basePrefix + amountTag + baseSuffix + "6304";
+        const crc = crc16(withoutCRC);
+        return withoutCRC + crc;
+      }
+
+      function updateQRIS(amount) {
+        if (isNaN(amount) || amount < 1000) amount = 5000;
+        selectedAmount = amount;
+        const qrisString = generateQRISString(amount);
+        QRCode.toCanvas(qrisCanvas, qrisString, { width: 200 }, function(error) {
+          if (error) console.error('QR Code error:', error);
+        });
+      }
+
+      // ==================== FUNGSI FETCH ====================
+      async function fetchData() {
+        try {
+          const { data: prof, error: profErr } = await supabaseClient
+            .from('profiles')
+            .select('*')
+            .limit(1)
+            .maybeSingle();
+
+          if (profErr) console.error('Profile fetch error:', profErr);
+          if (prof) {
+            profile = prof;
+            renderProfile();
+          }
+
+          if (prof?.id) {
+            const { data: lnks, error: linksErr } = await supabaseClient
+              .from('links')
+              .select('*')
+              .eq('user_id', prof.id)
+              .order('created_at', { ascending: false });
+
+            if (!linksErr) {
+              links = lnks || [];
+              renderLinks();
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching data:', error);
         }
       }
-      return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
-    }
 
-    function generateQRISString(amount) {
-      // Base merchant string (tanpa amount dan CRC)
-      const basePrefix = "00020101021126610014COM.GO-JEK.WWW01189360091439451776890210G9451776890303UMI51440014ID.CO.QRIS.WWW0215ID10254597029200303UMI520447895303360";
-      const baseSuffix = "5802ID5925BAGUS ARDIANTO ADI SAPUTR6013KOTA SEMARANG61055011562070703A01";
+      function renderProfile() {
+        if (profile.text_color) {
+          document.documentElement.style.color = profile.text_color;
+        }
+        if (profileName) profileName.textContent = profile.name || 'Bagus Ardianto Adi Saputro';
+        if (profileBio) profileBio.textContent = profile.bio || 'Professional Profile';
+        if (avatarImg) avatarImg.src = profile.avatar_url || '';
+        
+        if (bgDiv) {
+          if (profile.bg_url) {
+            bgDiv.style.backgroundImage = `url('${profile.bg_url}')`;
+          } else {
+            bgDiv.style.backgroundImage = 'none';
+            bgDiv.style.backgroundColor = '#000';
+          }
+        }
+      }
+
+      function renderLinks() {
+        if (!socialContainer || !squareContainer) return;
+        
+        socialContainer.innerHTML = '';
+        squareContainer.innerHTML = '';
+
+        links.forEach(link => {
+          if (link.type === 'social') {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'social-link';
+            a.innerHTML = getIconByUrl(link.url);
+            socialContainer.appendChild(a);
+          } else {
+            const a = document.createElement('a');
+            a.href = link.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'square-link';
+            a.innerHTML = `
+              <div class="flex justify-end opacity-40 group-hover:opacity-100">${getIconByUrl(link.url)}</div>
+              <span class="font-black uppercase tracking-widest leading-tight">${link.title || 'LINK'}</span>
+            `;
+            squareContainer.appendChild(a);
+          }
+        });
+      }
+
+      // ==================== MODAL FUNCTIONS ====================
+      function showModal(modal) {
+        if (modal) modal.classList.add('show');
+      }
       
-      const amountStr = amount.toString();
-      const amountTag = "54" + amountStr.length.toString().padStart(2, '0') + amountStr;
-      const withoutCRC = basePrefix + amountTag + baseSuffix + "6304";
-      const crc = crc16(withoutCRC);
-      return withoutCRC + crc;
-    }
-
-    function updateQRIS(amount) {
-      // Pastikan amount valid
-      if (isNaN(amount) || amount < 1000) amount = 5000;
-      selectedAmount = amount;
-      const qrisString = generateQRISString(amount);
-      QRCode.toCanvas(qrisCanvas, qrisString, { width: 200 }, function(error) {
-        if (error) console.error('QR Code error:', error);
-      });
-    }
-
-    // ==================== FUNGSI ====================
-    async function fetchData() {
-      const { data: prof, error: profErr } = await supabaseClient
-        .from('profiles')
-        .select('*')
-        .limit(1)
-        .maybeSingle();
-
-      if (profErr) console.error('Profile fetch error:', profErr);
-      if (prof) {
-        profile = prof;
-        renderProfile();
+      function hideModal(modal) {
+        if (modal) modal.classList.remove('show');
       }
 
-      if (prof?.id) {
-        const { data: lnks, error: linksErr } = await supabaseClient
-          .from('links')
-          .select('*')
-          .eq('user_id', prof.id)
-          .order('created_at', { ascending: false });
-
-        if (!linksErr) {
-          links = lnks || [];
-          renderLinks();
-        }
+      // ==================== EVENT LISTENERS ====================
+      if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+          showModal(shareModal);
+          if (shareUrlSpan) shareUrlSpan.textContent = PUBLIC_URL;
+          if (waShare) waShare.href = `https://wa.me/?text=${encodeURIComponent('Cek profil profesional: ' + PUBLIC_URL)}`;
+        });
       }
-    }
 
-    function renderProfile() {
-      document.documentElement.style.color = profile.text_color;
-      profileName.textContent = profile.name || 'Bagus Ardianto Adi Saputro';
-      profileBio.textContent = profile.bio || 'Professional Profile';
-      avatarImg.src = profile.avatar_url || '';
-      if (profile.bg_url) {
-        bgDiv.style.backgroundImage = `url('${profile.bg_url}')`;
-      } else {
-        bgDiv.style.backgroundImage = 'none';
+      if (closeShare) {
+        closeShare.addEventListener('click', () => hideModal(shareModal));
       }
-    }
 
-    function renderLinks() {
-      socialContainer.innerHTML = '';
-      squareContainer.innerHTML = '';
+      if (donateBtn) {
+        donateBtn.addEventListener('click', () => {
+          showModal(donateModal);
+          selectedAmount = 5000;
+          if (manualAmount) manualAmount.value = 5000;
+          donateOpts.forEach(btn => {
+            btn.classList.remove('bg-white', 'text-black', 'border-white');
+            if (btn.dataset.amount == 5000) {
+              btn.classList.add('bg-white', 'text-black', 'border-white');
+            }
+          });
+          updateQRIS(5000);
+        });
+      }
 
-      links.forEach(link => {
-        if (link.type === 'social') {
-          const a = document.createElement('a');
-          a.href = link.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.className = 'w-12 h-12 glass-pixel flex items-center justify-center hover:bg-white hover:text-black transition-all';
-          a.innerHTML = getIconByUrl(link.url);
-          socialContainer.appendChild(a);
-        } else {
-          const a = document.createElement('a');
-          a.href = link.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.className = 'aspect-square glass-pixel p-5 flex flex-col justify-between hover:bg-white hover:text-black group transition-all';
-          a.innerHTML = `
-            <div class="flex justify-end opacity-40 group-hover:opacity-100">${getIconByUrl(link.url)}</div>
-            <span class="text-[10px] font-black uppercase tracking-widest leading-tight">${link.title || 'LINK'}</span>
-          `;
-          squareContainer.appendChild(a);
-        }
-      });
-    }
+      if (closeDonate) {
+        closeDonate.addEventListener('click', () => hideModal(donateModal));
+      }
 
-    // ==================== EVENT LISTENERS ====================
-    shareBtn.addEventListener('click', () => {
-      shareModal.classList.remove('hidden');
-      shareModal.classList.add('flex');
-      shareUrlSpan.textContent = PUBLIC_URL;
-      waShare.href = `https://wa.me/?text=${encodeURIComponent('Cek profil profesional: ' + PUBLIC_URL)}`;
-    });
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(PUBLIC_URL);
+            if (copyToast) {
+              copyToast.classList.remove('hidden');
+              setTimeout(() => copyToast.classList.add('hidden'), 2000);
+            }
+          } catch (err) {
+            alert('Gagal menyalin');
+          }
+        });
+      }
 
-    closeShare.addEventListener('click', () => {
-      shareModal.classList.add('hidden');
-      shareModal.classList.remove('flex');
-    });
-
-    donateBtn.addEventListener('click', () => {
-      donateModal.classList.remove('hidden');
-      donateModal.classList.add('flex');
-      // Reset pilihan ke 5000 dan generate QR
-      selectedAmount = 5000;
-      manualAmount.value = 5000;
       donateOpts.forEach(btn => {
-        btn.classList.remove('bg-white', 'text-black', 'border-white');
-        if (btn.dataset.amount == 5000) {
+        btn.addEventListener('click', () => {
+          donateOpts.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
           btn.classList.add('bg-white', 'text-black', 'border-white');
+          const amount = parseInt(btn.dataset.amount, 10);
+          if (manualAmount) manualAmount.value = amount;
+          updateQRIS(amount);
+        });
+      });
+
+      if (manualAmount) {
+        manualAmount.addEventListener('input', (e) => {
+          const amount = parseInt(e.target.value, 10);
+          if (!isNaN(amount) && amount >= 1000) {
+            donateOpts.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
+            updateQRIS(amount);
+          }
+        });
+      }
+
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          if (qrisCanvas) {
+            const link = document.createElement('a');
+            link.download = `qris-${selectedAmount}.png`;
+            link.href = qrisCanvas.toDataURL('image/png');
+            link.click();
+          }
+        });
+      }
+
+      // Close modal when clicking outside
+      window.addEventListener('click', (e) => {
+        if (e.target === shareModal) hideModal(shareModal);
+        if (e.target === donateModal) hideModal(donateModal);
+      });
+
+      // ==================== INIT ====================
+      document.addEventListener('DOMContentLoaded', function() {
+        fetchData();
+        // Generate initial QR
+        if (qrisCanvas) {
+          updateQRIS(5000);
         }
       });
-      updateQRIS(5000);
-    });
-
-    closeDonate.addEventListener('click', () => {
-      donateModal.classList.add('hidden');
-      donateModal.classList.remove('flex');
-    });
-
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(PUBLIC_URL);
-        copyToast.classList.remove('hidden');
-        setTimeout(() => copyToast.classList.add('hidden'), 2000);
-      } catch (err) {
-        alert('Gagal menyalin');
-      }
-    });
-
-    // Pilihan nominal
-    donateOpts.forEach(btn => {
-      btn.addEventListener('click', () => {
-        donateOpts.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
-        btn.classList.add('bg-white', 'text-black', 'border-white');
-        const amount = parseInt(btn.dataset.amount, 10);
-        manualAmount.value = amount;
-        updateQRIS(amount);
-      });
-    });
-
-    // Input manual
-    manualAmount.addEventListener('input', (e) => {
-      const amount = parseInt(e.target.value, 10);
-      if (!isNaN(amount) && amount >= 1000) {
-        // Hilangkan highlight dari preset
-        donateOpts.forEach(b => b.classList.remove('bg-white', 'text-black', 'border-white'));
-        updateQRIS(amount);
-      }
-    });
-
-    // Download QR
-    downloadBtn.addEventListener('click', () => {
-      const link = document.createElement('a');
-      link.download = `qris-${selectedAmount}.png`;
-      link.href = qrisCanvas.toDataURL('image/png');
-      link.click();
-    });
-
-    // Tutup modal jika klik di luar
-    window.addEventListener('click', (e) => {
-      if (e.target === shareModal) shareModal.classList.add('hidden');
-      if (e.target === donateModal) donateModal.classList.add('hidden');
-    });
-
-    // ==================== INIT ====================
-    fetchData();
+    })();
   </script>
 </body>
 </html>
