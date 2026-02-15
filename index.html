@@ -2,492 +2,666 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bagus Ardianto Adi Saputro | Profil Page</title>
-  <meta name="description" content="Profil resmi Bagus Ardianto Adi Saputro. Hubungi langsung untuk kolaborasi.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Bagus Ardianto | Profil</title>
+  <meta name="description" content="Profil resmi Bagus Ardianto Adi Saputro">
   <link rel="icon" type="image/png" href="https://start.progresix.site/icon-1.png">
   
-  <!-- Tailwind + Font -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Supabase JS -->
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-  <!-- QRCode library -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-
+  <!-- Font system-ui untuk performa -->
   <style>
-    /* MINIMALIS, CLEAN, FUNGSIONAL - DENGAN BACKGROUND TETAP */
+    /* RESET & DASAR - OPTIMASI PERFORMANCE */
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    
     body { 
-      font-family: 'Inter', sans-serif; 
-      background: transparent;
-      color: #fff; 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
     }
     
-    /* Background image dari admin (tetap) */
+    /* Background system - ringan */
     #bg-image { 
       position: fixed; 
       inset: 0; 
       background-size: cover; 
       background-position: center; 
-      z-index: 5; 
+      z-index: 1;
+      will-change: transform;
     }
     
-    /* Overlay gelap agar teks tetap terbaca (lebih soft) */
-    .bg-overlay-clean {
+    /* Overlay tipis */
+    .bg-overlay {
       position: fixed;
       inset: 0;
-      background: linear-gradient(145deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.7) 100%);
-      backdrop-filter: blur(2px);
-      z-index: 10;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 2;
     }
     
-    /* Kontainer utama dengan background semi-transparan */
-    .content-wrapper {
+    /* Kontainer utama */
+    .container {
       position: relative;
-      z-index: 20;
-      width: 100%;
-      max-width: 480px;
+      z-index: 10;
+      max-width: 420px;
       margin: 0 auto;
-      padding: 24px 20px;
+      padding: 16px 16px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     
-    /* Card minimal dengan glass effect yang soft */
-    .card-clean {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
+    /* Share button */
+    .share-btn {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 16px;
+    }
+    
+    .share-btn button {
+      background: rgba(255, 255, 255, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 28px;
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
-      transition: all 0.2s ease;
-      padding: 24px;
+      border-radius: 40px;
+      padding: 8px 18px;
+      color: white;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      cursor: pointer;
     }
     
-    /* Avatar - clean circle dengan border tipis */
-    .avatar-clean {
-      width: 110px;
-      height: 110px;
+    .share-btn button:active {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0.98);
+    }
+    
+    .share-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+    }
+    
+    /* Avatar */
+    .avatar {
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
       object-fit: cover;
-      margin: 0 auto 16px;
+      margin: 0 auto 12px;
+      display: block;
     }
     
-    /* Social links - minimal circular dengan glass */
-    .social-minimal {
-      width: 48px;
-      height: 48px;
+    /* Nama & Bio */
+    .name {
+      font-weight: 700;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .bio {
+      font-size: 13px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 24px;
+      font-weight: 400;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    /* SOCIAL ICONS */
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    
+    .social-item {
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 50%;
       color: white;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: background 0.15s;
+      text-decoration: none;
     }
     
-    .social-minimal:hover {
+    .social-item:active {
       background: white;
-      color: #000;
-      transform: translateY(-4px);
-      border-color: transparent;
-      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.4);
+      color: black;
+      transform: scale(0.95);
     }
     
-    .social-minimal svg {
+    .social-item svg {
       width: 22px;
       height: 22px;
       fill: currentColor;
     }
     
-    /* Square links - minimal rectangular dengan glass */
-    .square-minimal {
+    /* SQUARE LINKS */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    
+    .link-card {
       aspect-ratio: 1/1;
-      padding: 1.2rem 0.8rem;
+      padding: 12px 8px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 24px;
+      border-radius: 18px;
       color: white;
       text-decoration: none;
-      transition: all 0.25s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: background 0.15s;
+      will-change: transform;
     }
     
-    .square-minimal:hover {
+    .link-card:active {
       background: white;
-      color: #000;
-      transform: translateY(-5px);
-      border-color: transparent;
-      box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.4);
+      color: black;
+      transform: scale(0.97);
     }
     
-    .square-minimal svg {
-      width: 28px;
-      height: 28px;
+    .link-card svg {
+      width: 24px;
+      height: 24px;
       fill: currentColor;
       opacity: 0.9;
+      align-self: flex-end;
     }
     
-    .square-minimal span {
+    .link-card span {
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.3;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.2px;
+      display: block;
     }
     
-    /* Donate button - solid dengan aksen */
-    .btn-donate {
+    /* DONATE BUTTON */
+    .donate-btn {
+      width: 100%;
       background: white;
-      color: #000;
+      color: black;
       border: none;
       border-radius: 60px;
-      padding: 18px 24px;
+      padding: 16px 20px;
       font-weight: 600;
       font-size: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      transition: all 0.25s ease;
-      box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.4);
-      width: 100%;
-    }
-    
-    .btn-donate:hover {
-      background: #f0f0f0;
-      transform: scale(1.02);
-      box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.5);
-    }
-    
-    .btn-donate svg {
-      width: 20px;
-      height: 20px;
-      stroke: currentColor;
-    }
-    
-    /* Share button */
-    .btn-share {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 60px;
-      padding: 10px 18px;
-      color: white;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
       gap: 8px;
+      margin-bottom: 24px;
+      transition: background 0.15s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+    
+    .donate-btn:active {
+      background: #f0f0f0;
+      transform: scale(0.98);
+    }
+    
+    .donate-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+    }
+    
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-top: auto;
+    }
+    
+    /* MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .modal.show { display: flex; }
+    
+    .modal-content {
+      background: #1a1a1a;
+      border-radius: 28px;
+      padding: 28px 24px;
+      max-width: 360px;
+      width: 100%;
+      color: white;
+      border: 1px solid #333;
+    }
+    
+    .modal-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    
+    .url-box {
+      background: #2a2a2a;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      position: relative;
+      border: 1px solid #3a3a3a;
+    }
+    
+    .url-label {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 4px;
+      display: block;
+    }
+    
+    .url-text {
       font-size: 14px;
       font-weight: 500;
+      color: white;
+      word-break: break-all;
+      padding-right: 40px;
     }
     
-    .btn-share:hover {
+    .copy-btn {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #999;
+      padding: 8px;
+      cursor: pointer;
+    }
+    
+    .copy-btn:active { color: white; }
+    .copy-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+    }
+    
+    .toast {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
       background: white;
-      color: #000;
-      border-color: transparent;
+      color: black;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      display: none;
     }
     
-    /* Typography di atas background gelap */
-    .name-title {
-      font-weight: 700;
-      font-size: 28px;
-      letter-spacing: -0.02em;
+    .toast.show { display: block; }
+    
+    .wa-btn {
+      width: 100%;
+      background: #25D366;
       color: white;
-      margin-bottom: 4px;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      border: none;
+      border-radius: 60px;
+      padding: 16px;
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      cursor: pointer;
     }
     
-    .bio-text {
+    .wa-btn:active { opacity: 0.8; }
+    .wa-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    
+    .close-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #999;
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.8);
-      font-weight: 400;
-      letter-spacing: 0.3px;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      font-weight: 500;
+      padding: 8px;
+      cursor: pointer;
     }
     
-    /* Modal dengan glass effect */
-    .modal-glass {
-      background: rgba(20, 20, 30, 0.85);
-      backdrop-filter: blur(20px);
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 32px;
-      max-width: 380px;
-      width: 90%;
-      color: white;
-      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.5);
-    }
+    .close-btn:active { color: white; }
     
-    /* Input dan button di modal */
-    .modal-input {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
+    /* Form modal */
+    .amount-input {
+      width: 100%;
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 16px;
       padding: 16px;
       color: white;
       font-size: 16px;
-      width: 100%;
+      margin-bottom: 16px;
+    }
+    
+    .amount-input:focus {
       outline: none;
+      border-color: #666;
     }
     
-    .modal-input:focus {
-      border-color: rgba(255, 255, 255, 0.4);
-      background: rgba(255, 255, 255, 0.15);
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
     }
     
-    .modal-option {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 14px;
-      color: rgba(255, 255, 255, 0.9);
+    .amount-opt {
+      background: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 14px;
+      padding: 14px 8px;
       font-weight: 500;
-      transition: all 0.2s;
+      font-size: 14px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.15s;
     }
     
-    .modal-option:hover {
-      background: rgba(255, 255, 255, 0.2);
+    .amount-opt:active {
+      background: #3a3a3a;
     }
     
-    .modal-option.active {
+    .amount-opt.active {
       background: white;
       color: black;
       border-color: white;
     }
     
-    /* Utility */
-    .fade-in { animation: fadeUp 0.4s ease-out; }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-    
-    .modal { 
-      position: fixed; 
-      inset: 0; 
-      background: rgba(0,0,0,0.5); 
-      backdrop-filter: blur(8px); 
-      z-index: 50; 
-      display: none; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 1.5rem; 
+    .qr-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      background: #2a2a2a;
+      padding: 16px;
+      border-radius: 20px;
     }
-    .modal.show { display: flex; }
+    
+    .download-btn {
+      width: 100%;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 60px;
+      padding: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      cursor: pointer;
+    }
+    
+    .download-btn:active {
+      background: #f0f0f0;
+      transform: scale(0.98);
+    }
     
     .hidden { display: none; }
   </style>
 </head>
-<body class="antialiased">
-  <!-- Background image (dari admin) -->
-  <div id="bg-image" class="bg-cover bg-center"></div>
-  <!-- Overlay gelap soft -->
-  <div class="bg-overlay-clean"></div>
+<body>
+  <!-- Background dari admin -->
+  <div id="bg-image"></div>
+  <div class="bg-overlay"></div>
   
-  <div id="app" class="min-h-screen flex flex-col items-center relative" style="z-index: 20;">
+  <div class="container">
     
-    <!-- Kontainer utama dengan padding -->
-    <div class="content-wrapper fade-in">
-      
-      <!-- Header dengan share button -->
-      <div class="flex justify-end mb-6">
-        <button id="share-btn" class="btn-share">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          Share
-        </button>
-      </div>
-
-      <!-- Profile section -->
-      <div class="flex flex-col items-center mb-8">
-        <img id="avatar-img" class="avatar-clean" src="" alt="avatar">
-        <h1 id="profile-name" class="name-title"></h1>
-        <p id="profile-bio" class="bio-text"></p>
-      </div>
-
-      <!-- Social Icons - Circular minimal dengan glass -->
-      <div id="social-links" class="flex flex-wrap justify-center gap-3 mb-10"></div>
-
-      <!-- Square Links - Minimal rectangular dengan glass -->
-      <div id="square-links" class="grid grid-cols-2 gap-4 w-full mb-8"></div>
-
-      <!-- Donate button -->
-      <button id="donate-btn" class="btn-donate">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/></svg>
-        Traktir Kopi
+    <!-- Share button -->
+    <div class="share-btn">
+      <button id="shareBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="18" cy="5" r="3"/>
+          <circle cx="6" cy="12" r="3"/>
+          <circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        Share
       </button>
-
-      <!-- Footer minimal -->
-      <footer class="mt-12 text-center">
-        <span class="text-xs text-white/40 font-medium tracking-wide">© <span id="current-year"></span> BAGUS ARDIANTO</span>
-      </footer>
     </div>
-
-    <!-- SHARE MODAL - Glass -->
-    <div id="share-modal" class="modal">
-      <div class="modal-glass">
-        <h3 class="text-2xl font-bold mb-6 tracking-tight">Share Profile</h3>
-        <div class="bg-white/10 rounded-2xl p-4 mb-6 relative border border-white/10">
-          <span class="text-xs text-white/50 font-medium block mb-1">Public URL</span>
-          <span id="share-url" class="text-sm font-medium text-white block truncate pr-10">https://start.progresix.site</span>
-          <button id="copy-btn" class="absolute right-4 top-1/2 -translate-y-1/2 p-2 hover:bg-white/20 rounded-xl transition">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-          <div id="copy-toast" class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-medium px-3 py-2 rounded-xl shadow-lg hidden whitespace-nowrap">
-            Link copied!
-          </div>
-        </div>
-        <a id="wa-share" href="#" target="_blank" class="w-full py-4 bg-[#25D366] text-white font-medium rounded-2xl flex items-center justify-center gap-2 hover:bg-[#20b859] transition mb-4">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
-          Share via WhatsApp
-        </a>
-        <button id="close-share" class="w-full text-sm text-white/50 font-medium hover:text-white transition">Tutup</button>
+    
+    <!-- Profile -->
+    <img id="avatar" class="avatar" src="" alt="avatar">
+    <h1 id="name" class="name"></h1>
+    <p id="bio" class="bio"></p>
+    
+    <!-- Social links -->
+    <div id="socialContainer" class="social-grid"></div>
+    
+    <!-- Square links -->
+    <div id="linksContainer" class="links-grid"></div>
+    
+    <!-- Donate button -->
+    <button id="donateBtn" class="donate-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/>
+        <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/>
+        <path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"/>
+      </svg>
+      Traktir Kopi
+    </button>
+    
+    <!-- Footer -->
+    <div class="footer">© <span id="currentYear"></span> BAGUS ARDIANTO</div>
+  </div>
+  
+  <!-- MODAL SHARE -->
+  <div id="shareModal" class="modal">
+    <div class="modal-content">
+      <h3 class="modal-title">Share Profile</h3>
+      <div class="url-box">
+        <span class="url-label">Public URL</span>
+        <span id="shareUrl" class="url-text">https://start.progresix.site</span>
+        <button id="copyUrlBtn" class="copy-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+        </button>
+        <div id="copyToast" class="toast">Link copied!</div>
       </div>
+      <a id="waShareBtn" href="#" target="_blank" class="wa-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
+        </svg>
+        Share via WhatsApp
+      </a>
+      <button id="closeShareBtn" class="close-btn">Tutup</button>
     </div>
-
-    <!-- DONATE MODAL - Glass -->
-    <div id="donate-modal" class="modal">
-      <div class="modal-glass">
-        <h3 class="text-2xl font-bold mb-6 tracking-tight">Traktir Kopi</h3>
-        
-        <div class="mb-5">
-          <label class="block text-xs text-white/50 font-medium mb-2">Nominal (Rp)</label>
-          <input type="number" id="manual-amount" min="1000" value="5000" class="modal-input">
-        </div>
-        
-        <div class="grid grid-cols-3 gap-3 mb-6">
-          <button class="modal-option donate-opt" data-amount="5000">Rp5k</button>
-          <button class="modal-option donate-opt" data-amount="10000">Rp10k</button>
-          <button class="modal-option donate-opt" data-amount="50000">Rp50k</button>
-        </div>
-        
-        <div class="flex justify-center mb-6">
-          <div class="bg-white/10 p-3 rounded-2xl border border-white/10">
-            <canvas id="qris-canvas" width="180" height="180"></canvas>
-          </div>
-        </div>
-        
-        <button id="download-qr" class="w-full py-4 bg-white text-black font-medium rounded-2xl hover:bg-gray-100 transition mb-4">
-          Download QR
-        </button>
-        
-        <button id="close-donate" class="w-full text-sm text-white/50 font-medium hover:text-white transition">
-          Tutup
-        </button>
+  </div>
+  
+  <!-- MODAL DONATE -->
+  <div id="donateModal" class="modal">
+    <div class="modal-content">
+      <h3 class="modal-title">Traktir Kopi</h3>
+      
+      <input type="number" id="amountInput" min="1000" value="5000" class="amount-input" placeholder="Nominal (Rp)">
+      
+      <div class="amount-grid">
+        <button class="amount-opt active" data-amount="5000">Rp5k</button>
+        <button class="amount-opt" data-amount="10000">Rp10k</button>
+        <button class="amount-opt" data-amount="50000">Rp50k</button>
       </div>
+      
+      <div class="qr-container">
+        <canvas id="qrisCanvas" width="160" height="160"></canvas>
+      </div>
+      
+      <button id="downloadQrBtn" class="download-btn">Download QR</button>
+      <button id="closeDonateBtn" class="close-btn">Tutup</button>
     </div>
   </div>
 
+  <!-- Library - ditempatkan di akhir agar tidak blocking -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  
   <script>
     (function() {
+      // Konfigurasi
       const SUPABASE_URL = 'https://dkftqhkpwymbdtpznwto.supabase.co';
       const SUPABASE_KEY = 'sb_publishable_Hlzx5XRu6hxnoxOCNKk7vg_9829kGve';
       const PUBLIC_URL = 'https://start.progresix.site';
+      
+      // Inisialisasi Supabase
       const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-      // Icon set minimal
+      
+      // Icons - object literal
       const Icons = {
-        github: () => `<svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`,
-        youtube: () => `<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`,
-        tiktok: () => `<svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.06 3.43-.01 6.86-.03 10.29-.01 2.28-.5 4.55-1.84 6.42-1.31 1.94-3.47 3.32-5.81 3.79-2.31.5-4.83.19-6.93-1.01-2.12-1.21-3.7-3.32-4.32-5.63-.61-2.34-.32-4.89.87-7.01 1.15-2.07 3.19-3.61 5.48-4.23.8-.23 1.64-.32 2.47-.32l-.01 4.02c-.52.01-1.04.1-1.54.26-1.15.35-2.17 1.12-2.73 2.18-.58 1.09-.73 2.4-.38 3.59.35 1.19 1.17 2.22 2.25 2.8 1.06.59 2.33.73 3.5.38 1.19-.35 2.2-1.22 2.74-2.33.39-.83.56-1.76.53-2.69-.02-3.56-.01-7.11-.02-10.67z"/></svg>`,
-        instagram: () => `<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.353 2.615 6.768 6.981 6.968 1.28.057 1.688.072 4.947.072s3.667-.015 4.947-.072c4.351-.2 6.768-2.614 6.968-6.981.058-1.28.072-1.688.072-4.947s-.015-3.667-.072-4.947c-.2-4.349-2.615-6.768-6.981-6.967C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4.162 4.162 0 1 1 0-8.324 4.162 4.162 0 0 1 0 8.324zM18.406 4.137a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>`,
-        whatsapp: () => `<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>`,
-        x: () => `<svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>`,
-        linkedin: () => `<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
-        telegram: () => `<svg viewBox="0 0 24 24"><path d="M11.944 0C5.346 0 0 5.346 0 11.944c0 6.598 5.346 11.944 11.944 11.944 6.598 0 11.944-5.346 11.944-11.944C23.888 5.346 18.542 0 11.944 0zm5.206 16.561c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285l-1.42-1.42-1.42 1.42c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285L10.55 15.141l-1.42 1.42c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285l-1.42-1.42c-.39-.39-.39-1.02 0-1.41l1.42-1.42-1.42-1.42c-.39-.39-.39-1.02 0-1.41l1.42-1.42c.19-.19.44-.285.71-.285.27 0 .52.095.71.285l1.42 1.42 1.42-1.42c.19-.19.44-.285.71-.285.27 0 .52.095.71.285l1.42 1.42 1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.39.39.39 1.02 0 1.41l-1.42 1.42 1.42 1.42c.39.39.39 1.02 0 1.41l-1.42 1.42z"/></svg>`,
-        facebook: () => `<svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
-        globe: () => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+        github: '<svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>',
+        youtube: '<svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
+        tiktok: '<svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.06 3.43-.01 6.86-.03 10.29-.01 2.28-.5 4.55-1.84 6.42-1.31 1.94-3.47 3.32-5.81 3.79-2.31.5-4.83.19-6.93-1.01-2.12-1.21-3.7-3.32-4.32-5.63-.61-2.34-.32-4.89.87-7.01 1.15-2.07 3.19-3.61 5.48-4.23.8-.23 1.64-.32 2.47-.32l-.01 4.02c-.52.01-1.04.1-1.54.26-1.15.35-2.17 1.12-2.73 2.18-.58 1.09-.73 2.4-.38 3.59.35 1.19 1.17 2.22 2.25 2.8 1.06.59 2.33.73 3.5.38 1.19-.35 2.2-1.22 2.74-2.33.39-.83.56-1.76.53-2.69-.02-3.56-.01-7.11-.02-10.67z"/></svg>',
+        instagram: '<svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.353 2.615 6.768 6.981 6.968 1.28.057 1.688.072 4.947.072s3.667-.015 4.947-.072c4.351-.2 6.768-2.614 6.968-6.981.058-1.28.072-1.688.072-4.947s-.015-3.667-.072-4.947c-.2-4.349-2.615-6.768-6.981-6.967C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4.162 4.162 0 1 1 0-8.324 4.162 4.162 0 0 1 0 8.324zM18.406 4.137a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>',
+        whatsapp: '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>',
+        x: '<svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>',
+        linkedin: '<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+        telegram: '<svg viewBox="0 0 24 24"><path d="M11.944 0C5.346 0 0 5.346 0 11.944c0 6.598 5.346 11.944 11.944 11.944 6.598 0 11.944-5.346 11.944-11.944C23.888 5.346 18.542 0 11.944 0zm5.206 16.561c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285l-1.42-1.42-1.42 1.42c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285L10.55 15.141l-1.42 1.42c-.19.19-.44.285-.71.285-.27 0-.52-.095-.71-.285l-1.42-1.42c-.39-.39-.39-1.02 0-1.41l1.42-1.42-1.42-1.42c-.39-.39-.39-1.02 0-1.41l1.42-1.42c.19-.19.44-.285.71-.285.27 0 .52.095.71.285l1.42 1.42 1.42-1.42c.19-.19.44-.285.71-.285.27 0 .52.095.71.285l1.42 1.42 1.42-1.42c.39-.39 1.02-.39 1.41 0l1.42 1.42c.39.39.39 1.02 0 1.41l-1.42 1.42 1.42 1.42c.39.39.39 1.02 0 1.41l-1.42 1.42z"/></svg>',
+        facebook: '<svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
+        globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>'
       };
-
-      function getIconByUrl(url) {
-        if (!url) return Icons.globe();
+      
+      // Helper get icon
+      function getIcon(url) {
+        if (!url) return Icons.globe;
         const l = url.toLowerCase();
-        if (l.includes('instagram.com')) return Icons.instagram();
-        if (l.includes('github.com')) return Icons.github();
-        if (l.includes('twitter.com') || l.includes('x.com')) return Icons.x();
-        if (l.includes('youtube.com') || l.includes('youtu.be')) return Icons.youtube();
-        if (l.includes('tiktok.com')) return Icons.tiktok();
-        if (l.includes('linkedin.com')) return Icons.linkedin();
-        if (l.includes('whatsapp.com') || l.includes('wa.me')) return Icons.whatsapp();
-        if (l.includes('t.me') || l.includes('telegram')) return Icons.telegram();
-        if (l.includes('facebook.com') || l.includes('fb.com')) return Icons.facebook();
-        return Icons.globe();
+        if (l.includes('instagram')) return Icons.instagram;
+        if (l.includes('github')) return Icons.github;
+        if (l.includes('twitter') || l.includes('x.com')) return Icons.x;
+        if (l.includes('youtube')) return Icons.youtube;
+        if (l.includes('tiktok')) return Icons.tiktok;
+        if (l.includes('linkedin')) return Icons.linkedin;
+        if (l.includes('whatsapp') || l.includes('wa.me')) return Icons.whatsapp;
+        if (l.includes('telegram') || l.includes('t.me')) return Icons.telegram;
+        if (l.includes('facebook')) return Icons.facebook;
+        return Icons.globe;
       }
-
-      // State
+      
+      // DOM Elements
+      const bgDiv = document.getElementById('bg-image');
+      const avatarImg = document.getElementById('avatar');
+      const nameEl = document.getElementById('name');
+      const bioEl = document.getElementById('bio');
+      const socialContainer = document.getElementById('socialContainer');
+      const linksContainer = document.getElementById('linksContainer');
+      const yearSpan = document.getElementById('currentYear');
+      
+      // Modals
+      const shareModal = document.getElementById('shareModal');
+      const donateModal = document.getElementById('donateModal');
+      const shareBtn = document.getElementById('shareBtn');
+      const donateBtn = document.getElementById('donateBtn');
+      const closeShareBtn = document.getElementById('closeShareBtn');
+      const closeDonateBtn = document.getElementById('closeDonateBtn');
+      const copyUrlBtn = document.getElementById('copyUrlBtn');
+      const shareUrl = document.getElementById('shareUrl');
+      const waShareBtn = document.getElementById('waShareBtn');
+      const copyToast = document.getElementById('copyToast');
+      
+      // QR related
+      const qrisCanvas = document.getElementById('qrisCanvas');
+      const amountInput = document.getElementById('amountInput');
+      const amountOpts = document.querySelectorAll('.amount-opt');
+      const downloadQrBtn = document.getElementById('downloadQrBtn');
+      
+      // Set tahun
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+      
+      // Data
       let profile = {};
       let links = [];
-
-      // DOM elements
-      const avatarImg = document.getElementById('avatar-img');
-      const profileName = document.getElementById('profile-name');
-      const profileBio = document.getElementById('profile-bio');
-      const socialContainer = document.getElementById('social-links');
-      const squareContainer = document.getElementById('square-links');
-      const bgDiv = document.getElementById('bg-image');
-      const yearSpan = document.getElementById('current-year');
-      const shareModal = document.getElementById('share-modal');
-      const donateModal = document.getElementById('donate-modal');
-      const shareBtn = document.getElementById('share-btn');
-      const donateBtn = document.getElementById('donate-btn');
-      const closeShare = document.getElementById('close-share');
-      const closeDonate = document.getElementById('close-donate');
-      const copyBtn = document.getElementById('copy-btn');
-      const qrisCanvas = document.getElementById('qris-canvas');
-      const manualAmount = document.getElementById('manual-amount');
-      const donateOpts = document.querySelectorAll('.donate-opt');
-
-      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
+      
       // Fetch data
       async function fetchData() {
-        const { data: prof } = await supabaseClient.from('profiles').select('*').limit(1).maybeSingle();
-        if (prof) {
-          profile = prof;
-          renderProfile();
-          const { data: lnks } = await supabaseClient.from('links').select('*').eq('user_id', prof.id).order('created_at', { ascending: false });
-          links = lnks || [];
-          renderLinks();
+        try {
+          const { data: prof } = await supabaseClient.from('profiles').select('*').limit(1).maybeSingle();
+          if (prof) {
+            profile = prof;
+            // Render profile
+            nameEl.textContent = prof.name || 'Bagus Ardianto Adi Saputro';
+            bioEl.textContent = prof.bio || 'Digital Creator';
+            avatarImg.src = prof.avatar_url || 'https://ui-avatars.com/api/?name=Bagus+Ardianto&size=96&background=random';
+            if (prof.bg_url) {
+              bgDiv.style.backgroundImage = `url('${prof.bg_url}')`;
+            }
+            
+            // Fetch links
+            const { data: lnks } = await supabaseClient.from('links').select('*').eq('user_id', prof.id).order('created_at', { ascending: false });
+            links = lnks || [];
+            renderLinks();
+          }
+        } catch (e) {
+          console.error('Error fetching data:', e);
         }
       }
-
-      function renderProfile() {
-        profileName.textContent = profile.name || 'Bagus Ardianto Adi Saputro';
-        profileBio.textContent = profile.bio || 'Digital Creator';
-        avatarImg.src = profile.avatar_url || 'https://ui-avatars.com/api/?name=Bagus+Ardianto&size=120&background=random';
-        if (profile.bg_url) {
-          bgDiv.style.backgroundImage = `url('${profile.bg_url}')`;
-        }
-      }
-
+      
       function renderLinks() {
         socialContainer.innerHTML = '';
-        squareContainer.innerHTML = '';
+        linksContainer.innerHTML = '';
+        
         links.forEach(link => {
           if (link.type === 'social') {
             const a = document.createElement('a');
             a.href = link.url;
             a.target = '_blank';
-            a.className = 'social-minimal';
-            a.innerHTML = getIconByUrl(link.url);
+            a.className = 'social-item';
+            a.innerHTML = getIcon(link.url);
             socialContainer.appendChild(a);
           } else {
             const a = document.createElement('a');
             a.href = link.url;
             a.target = '_blank';
-            a.className = 'square-minimal';
+            a.className = 'link-card';
             a.innerHTML = `
-              <div class="flex justify-end">${getIconByUrl(link.url)}</div>
-              <span>${link.title}</span>
+              <div>${getIcon(link.url)}</div>
+              <span>${link.title || 'Link'}</span>
             `;
-            squareContainer.appendChild(a);
+            linksContainer.appendChild(a);
           }
         });
       }
-
+      
       // QRIS functions
       function crc16(str) {
         let crc = 0xFFFF;
@@ -500,69 +674,73 @@
         }
         return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
       }
-
+      
       function updateQRIS(amount) {
+        if (!amount || amount < 1000) amount = 1000;
         const base = "00020101021126610014COM.GO-JEK.WWW01189360091439451776890210G9451776890303UMI51440014ID.CO.QRIS.WWW0215ID10254597029200303UMI520447895303360";
         const suffix = "5802ID5925BAGUS ARDIANTO ADI SAPUTR6013KOTA SEMARANG61055011562070703A01";
         const amtStr = amount.toString();
         const tag = "54" + amtStr.length.toString().padStart(2, '0') + amtStr;
         const full = base + tag + suffix + "6304";
-        QRCode.toCanvas(qrisCanvas, full + crc16(full), { width: 180 });
+        QRCode.toCanvas(qrisCanvas, full + crc16(full), { width: 160, margin: 1 });
       }
-
-      // Event listeners
+      
+      // Event Listeners
       shareBtn.onclick = () => shareModal.classList.add('show');
-      closeShare.onclick = () => shareModal.classList.remove('show');
-      donateBtn.onclick = () => { 
-        donateModal.classList.add('show'); 
+      closeShareBtn.onclick = () => shareModal.classList.remove('show');
+      
+      donateBtn.onclick = () => {
+        donateModal.classList.add('show');
         updateQRIS(5000);
-        // Reset active state
-        donateOpts.forEach(opt => opt.classList.remove('active'));
-        document.querySelector('.donate-opt[data-amount="5000"]').classList.add('active');
+        amountOpts.forEach(opt => opt.classList.remove('active'));
+        document.querySelector('.amount-opt[data-amount="5000"]').classList.add('active');
       };
-      closeDonate.onclick = () => donateModal.classList.remove('show');
-
-      copyBtn.onclick = () => {
-        navigator.clipboard.writeText(PUBLIC_URL);
-        const toast = document.getElementById('copy-toast');
-        toast.classList.remove('hidden');
-        setTimeout(() => toast.classList.add('hidden'), 2000);
+      closeDonateBtn.onclick = () => donateModal.classList.remove('show');
+      
+      copyUrlBtn.onclick = () => {
+        navigator.clipboard.writeText(PUBLIC_URL).then(() => {
+          copyToast.classList.add('show');
+          setTimeout(() => copyToast.classList.remove('show'), 1500);
+        }).catch(err => {
+          console.error('Copy failed:', err);
+          alert('Gagal menyalin link');
+        });
       };
-
-      donateOpts.forEach(btn => {
+      
+      amountOpts.forEach(btn => {
         btn.onclick = () => {
-          donateOpts.forEach(b => b.classList.remove('active'));
+          amountOpts.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          manualAmount.value = btn.dataset.amount;
+          amountInput.value = btn.dataset.amount;
           updateQRIS(btn.dataset.amount);
         };
       });
-
-      manualAmount.oninput = (e) => {
-        const val = e.target.value || 0;
+      
+      amountInput.oninput = (e) => {
+        const val = parseInt(e.target.value) || 0;
         updateQRIS(val);
-        donateOpts.forEach(b => b.classList.remove('active'));
+        amountOpts.forEach(b => b.classList.remove('active'));
       };
-
-      // Download QR
-      document.getElementById('download-qr').onclick = () => {
+      
+      downloadQrBtn.onclick = () => {
         const canvas = qrisCanvas;
         const link = document.createElement('a');
         link.download = 'qris-bardianto.png';
         link.href = canvas.toDataURL();
         link.click();
       };
-
-      // Close modal when clicking outside
+      
+      // Tutup modal klik outside
       window.onclick = (e) => {
         if (e.target === shareModal) shareModal.classList.remove('show');
         if (e.target === donateModal) donateModal.classList.remove('show');
       };
-
+      
       // Set WA share link
-      const waShare = document.getElementById('wa-share');
-      waShare.href = `https://wa.me/?text=${encodeURIComponent(`Lihat profil Bagus Ardianto: ${PUBLIC_URL}`)}`;
-
+      waShareBtn.href = `https://wa.me/?text=${encodeURIComponent('Lihat profil Bagus Ardianto: ' + PUBLIC_URL)}`;
+      shareUrl.textContent = PUBLIC_URL;
+      
+      // Mulai
       fetchData();
     })();
   </script>
